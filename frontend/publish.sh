@@ -15,7 +15,7 @@ gulpur build \
   && REV=`git rev-parse HEAD` \
   && cd ../../2016-fantasy.github.io \
 `#  && git rm -r *` \
-  && cp -r -v ../www/frontend/.dist/* ./ \
+  && cp -r -v ../presidential-frontend/frontend/.dist/* ./ \
   && git add . --all \
   && git commit -m "Publishing $REV" \
   && git push origin master \
