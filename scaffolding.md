@@ -1,6 +1,6 @@
 # base-angular
 
-#### An advanced, base Angular.js project supporting ECMAScript 6/7, LESS, modularized Angular development, and comes with an out-of-the-box full-featured Gulp.js build and development pipeline.
+#### An advanced, base Angular.js project supporting ECMAScript 2015, LESS, modularized Angular development, and comes with an out-of-the-box full-featured Gulp.js build and development pipeline.
 
 #### Tuned for rapid web application development and deployment.
 
@@ -12,8 +12,8 @@
 
 ##### Install
 ````
-git clone https://github.com/blakelapierre/base-angular
-cd base-angular/frontend
+git clone https://github.com/2016-fantasy/presidential-frontend
+cd presidential-frontend/frontend
 npm install
 ````
 
