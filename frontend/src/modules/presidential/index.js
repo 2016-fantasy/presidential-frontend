@@ -8,6 +8,8 @@ import dataStore from '../dataStore';
 export default {
   'presidential':  angular.module('presidential', ['ngRoute', 'dataStore'])
     .directive('presidential',  require('./directives/presidential/directive'))
+      .directive('candidates', require('./directives/presidential/candidates/directive'))
+
       // These names are a bit nuanced and not well documented...
       .directive('league',     require('./directives/presidential/league/directive'))
       .directive('newLeague',  require('./directives/presidential/league/new/directive'))
@@ -74,16 +76,17 @@ export default {
         .when('/', {
           template: '<welcome></welcome>'
         })
+        .when('/candidates', {
+          template: '<candidates><candidates>'
+        })
         .when('/league/new', {
-          template: '<new-league></new-league>',
-          controller: dataController
+          template: '<new-league></new-league>'
         })
         .when('/league/find', {
-          template: '<find-league></find-league>',
-          controller: dataController
+          template: '<find-league></find-league>'
         })
         .when('/league/:leagueId', {
-          template: '<league test="league"></league>',
+          template: '<league></league>',
           controller: dataController
         })
         // .when('/breathe', {
