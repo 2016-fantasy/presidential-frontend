@@ -86,7 +86,7 @@ gulp.task('js-app', ['jshint'],
     })
       .external(_.keys(dependencies))
       .bundle()
-      .on('error', function(err) {
+      .on('error', function(err) { // Cannot use => syntax here, as `this` must be set by the caller
         console.log('js-app', err.stack);
         this.emit('end');
       })
@@ -175,7 +175,10 @@ gulp.task('rev',
   () => pipe([
     gulp.src([paths.rev.$all])
     ,p('rev:pre')
-    ,(new revAll()).revision({ignore: ['index.html']})
+    ,(new revAll({
+      dontRenameFile: ['index\.html'],
+      dontSearchFile: ['vendor.js']
+    })).revision()
     ,p('rev:post')
     ,gulp.dest(paths.dist.$)
   ]));
