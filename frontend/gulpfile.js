@@ -29,6 +29,8 @@ const {dependencies} = require('./package.json'),
         util
       } = require('gulp-load-plugins')();
 
+      console.log({revAll});
+
 const result = tasks(gulp, require);
 if (typeof result === 'string') console.log(result);
 
@@ -173,7 +175,7 @@ gulp.task('rev',
   () => pipe([
     gulp.src([paths.rev.$all])
     ,p('rev:pre')
-    ,revAll({ignore: ['index.html']})
+    ,(new revAll()).revision({ignore: ['index.html']})
     ,p('rev:post')
     ,gulp.dest(paths.dist.$)
   ]));
