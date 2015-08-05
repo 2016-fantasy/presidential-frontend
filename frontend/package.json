@@ -4,7 +4,8 @@
   "repository": "https://github.com/2016-fantasy/presidential-frontend",
   "version": "0.0.1",
   "dependencies": {
-    "angular": "^1.4.3"
+    "angular": "^1.4.3",
+    "angular-route": "^1.4.3"
   },
   "devDependencies": {
     "babelify": "^6.1.3",
