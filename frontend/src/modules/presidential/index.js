@@ -1,9 +1,18 @@
 require('angular');
 require('angular-route');
 
+import _ from 'lodash';
+
+import dataStore from '../dataStore';
+
 export default {
-  'presidential':  angular.module('presidential', ['ngRoute'])
+  'presidential':  angular.module('presidential', ['ngRoute', 'dataStore'])
     .directive('presidential',  require('./directives/presidential/directive'))
+      // These names are a bit nuanced and not well documented...
+      .directive('league',     require('./directives/presidential/league/directive'))
+      .directive('newLeague',  require('./directives/presidential/league/new/directive'))
+      .directive('findLeague', require('./directives/presidential/league/find/directive'))
+
       .directive('welcome',     require('./directives/presidential/welcome/directive'))
 
     .config([
@@ -30,37 +39,52 @@ export default {
       // $mountProvider.mount('/', routes);
       // $mountProvider.$get();
 
-      // const routerController = [
-      //   '$scope', '$routeParams',
-      //   ($scope, $routeParams) => _.extend($scope, $routeParams)
-      // ];
+      const routerController = [
+        '$scope', '$routeParams',
+        ($scope, $routeParams) => _.extend($scope, $routeParams)
+      ];
 
-      // const dataController = [
-      //   '$scope', '$routeParams', 'dataStore',
-      //   ($scope, $routeParams, dataStore) => {
-      //     const something = _.reduce($routeParams, (params, value, name) => {
-      //       const [store, index] = name.match(/(\b|[A-Z]+)[a-z]*/g);
+      // Allows you to wire a route to a specific item in a database.
+      // Currently, this is equivalent to grabbing a value from a
+      // key-value store based on a user provided parameter in the URL
+      const dataController = [
+        '$scope', '$routeParams', 'dataStore',
+        ($scope, $routeParams, dataStore) => {
+          const something = _.reduce($routeParams, (params, value, name) => {
+            const [store, index] = name.match(/(\b|[A-Z]+)[a-z]*/g);
 
-      //       console.log({name, value, store, index});
+            console.log({name, value, store, index});
 
-      //       params[store] = dataStore[`get${capitalize(store)}By${index}`](value);
+            params[store] = dataStore[`get${capitalize(store)}By${index}`](value);
 
-      //       return params;
-      //     }, {});
+            return params;
+          }, {});
 
-      //     console.log({dataStore, something});
+          console.log({$scope, dataStore, something});
 
-      //     _.extend($scope, something);
+          _.extend($scope, something);
 
-      //     function capitalize(string) {
-      //       return string.charAt(0).toUpperCase() + string.slice(1);
-      //     }
-      //   }
-      // ];
+          function capitalize(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+          }
+        }
+      ];
 
       $routeProvider
         .when('/', {
           template: '<welcome></welcome>'
+        })
+        .when('/league/new', {
+          template: '<new-league></new-league>',
+          controller: dataController
+        })
+        .when('/league/find', {
+          template: '<find-league></find-league>',
+          controller: dataController
+        })
+        .when('/league/:leagueId', {
+          template: '<league test="league"></league>',
+          controller: dataController
         })
         // .when('/breathe', {
         //   template: `<breathe></breathe>`
