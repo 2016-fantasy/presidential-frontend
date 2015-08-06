@@ -29,7 +29,11 @@ Each user will need an account against which we can store score. Would like to a
 
 First, we need to decide: Are they adopting a single candidate (pet model) or a political party (team model). I would like to have the pet model as the data models are MUCH simpler in the league engine. Considering one object's actions, results and scores against each other is frankly simpler than doing it for each team member, aggregating to a team result and ranking/scoring along that whole matrix of objects and events. If this goes nutty online, we can work from now until 2020 on a true Presidential Erection: Team America type of game :)
 
+BLAKE: I think the pet model is best, BUT you should be able to have multiple pets :) Different pets do different tricks and it's fun to watch them all.
+
 We need to define the play grain - what amounts to a "day" of play. Will a user get to play a certain number of mini-games per day? Take one turn in each offered game? How do we "level" the playing field such that each person gets to do the same things each day...but with different/personal results?
+
+BLAKE: I think this will be defined by what "events" a league is playing with. A league may choose to potentially have many events in a day, for example, a league may award points every time Donald Trump tweets. Others may only be interested in longer term events, such as quarterly fundraising numbers. If we allow leagues to consume any kind of event they want, we can (easily) allow for a diverse set of "game modes".
 
 ## Possible Play Flow
 These are merely ideas. Feel free to edit and commit :)
