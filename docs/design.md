@@ -42,3 +42,35 @@ These are merely ideas. Feel free to edit and commit :)
 
 ## Add-On Ideas
 Once we get the core game online and playable (launched) we should go back through and find nice ways to integrate relevant news into the game. Either a video player that exists on the side to play news while the user is on the site, an updating panel with current poll results from the real world, etc. Basically, turn this into a one-stop shop for Presidential Election 2016 news...and humor :)
+
+
+
+## Alternate Fantasy Games
+
+I think we should aim for the most flexible and dynamic system as possible. Parameterize everything we can think of and provide tools for the users to input their own parameters (the UI should be completely intuitive to the user). This will maximize our opportunity to find the most compelling games, as well as to support a large diversity of games and experiences for users (not everyone is in to the same stuff). The user is really just interacting with a database and we should provide the tools to allow them to slice that data in any way they wish.
+
+
+### Themes
+
+Data. Numbers. People love data and numbers. We need to show users the ones that are most relevant to them. We need to make it easy for the user to compare and manipulate the numbers that mean the most for them.
+
+There should be many, clear, actionable visualizations. If it's a number and it changes over time, there should be a chart.
+
+
+### Leagues
+
+A league is a group of players that are all competing in the same competition.
+
+#### Events
+
+There should be an easy way to publish events that can be consumed by any manner of subsystems. Events are essentially propositions that will eventually resolve to a binary value (either the event occurred or did not occur). Events will likely be the lifeblood of the system. Third parties / users should be able to publish event streams.
+
+#### Drafts
+
+A league may hold a draft, where players may choose candidates that they wish to play.
+
+There may be many types of drafts. Each league could choose the type of draft they would like to have.
+
+#### Trading
+
+Sorry, but your candidate(s) may start to perform poorly in your league, so you should have a way to trade them or somehow dump them.
