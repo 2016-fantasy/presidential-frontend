@@ -24,6 +24,8 @@ I'm not voting for whether we should irritatingly ask users to share accomplishm
 
 Large, heavily-animated pop-ups asking me to share, share, share, share, share do not excite me and most other people. A simple, "Share This Result" button on a progress dialog or "You Won!" dialog that's going to happen anyway is not out-of-bounds to me at all. Popping them up every single time the user gets a question correct or whacks a mole is out-of-bounds for me.
 
+BLAKE: Agreed. I do think sharing could/should be a large aspect of the game, but it should mostly happen inside the league data structures (so that we can access it and manipulate it in cool ways). We should definitely facilitate spreading links to the site, but the goal is not necessarily to push content to Twitter/Facebook/et.al. 
+
 ## Leagues
 Each user will need an account against which we can store score. Would like to allow signup with Facebook and/or Twitter to get them a basic identity against which we can file their scores and rank them against their friends.
 
