@@ -12,12 +12,24 @@ I'd like to see darts (throw darts at a candidate's face), the "dunk" game (sits
 Will need music, sound effects, images and text. Not going to even try to iterate them all, but we're going to need some basics:
 
 1. Each candidate in a variety of emotional poses. We can crib photos from online to get started, but may need to replace these. Will have to check legality.
+
+BLAKE: I've started pulling in some initial images. It looks like they are mostly just the first result in a Google image search. I'm very interested in allowing the images to be crowd-sourced and customizable. A league should be able to customize the candidate avatars, for example. Depiction of public officials is a highly protected right. Ours is political speech and our rights are absolute (at least according to Amendment I).
+
 2. The mini-game environments. Even something as basic as whack-a-mole wants a graphical overlay. Each of these will. Again, can probably crib from Google images to get going, but (want) originals before it's shipped.
+
+BLAKE: I think these could be very successful. Hybrid game/humor pieces would be interesting. Even better if players/leagues could somehow create their own, or provide some level of customization.
+
 3. Game content - trivia games need questions, puzzle games need puzzles.
+
+BLAKE: Events can help drive trivia games and questions. No thoughts on puzzles at the moment. Please expand if you get a chance.
 
 I think these should be as humorously informative as possible, but am willing to just shut up, sit in the corner and code. My flavor of humor, speech and interpersonal interaction is not something that should see the light of day in a commercial application built on this topic. I am, however, more than happy to offend everyone on the planet twice.
 
+BLAKE: Humor definitely has a place and I think it can work really well. Seriousness also has a place and we should be able to have both. There should be some areas where humor is discouraged (when we want to deal soley in facts).
+
 Music, sound effects, etc., can all be handled here. My son Zack would get involved and create one-off jingles, sound effects (button presses, buzzers, etc.) and the rest of what we'll need along with me, if needed.
+
+BLAKE: I think these would be fun. I don't think many peolple have seen just how dynamic the web can be now. Creating synchronized multi-media presentations [a player should never think of it in those words:)] is something I'm looking forward to.
 
 ## Social and Sharing
 I'm not voting for whether we should irritatingly ask users to share accomplishments, etc. We can take any approach on that. I would like it to be "less" obtrusive if we're going to have it.
