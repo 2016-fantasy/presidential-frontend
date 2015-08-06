@@ -1,0 +1,31 @@
+companion-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+
+  .content {
+    padding: 0.25em;
+
+    height: 100%;
+
+    background-color: rgba(64, 64, 64, 0.2);
+
+    .close {
+      float: right;
+
+      background-color: #000;
+
+      &:hover {
+        font-weight: bold;
+
+        cursor: pointer;
+      }
+    }
+
+    .embed {
+      width: 100%;
+    }
+  }
+}

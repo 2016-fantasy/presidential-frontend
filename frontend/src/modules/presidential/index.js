@@ -4,9 +4,10 @@ require('angular-route');
 import _ from 'lodash';
 
 import dataStore from '../dataStore';
+import devbox from '../devbox';
 
 export default {
-  'presidential':  angular.module('presidential', ['ngRoute', 'dataStore'])
+  'presidential':  angular.module('presidential', ['ngRoute', 'dataStore', 'devbox'])
     .directive('presidential',  require('./directives/presidential/directive'))
       .directive('candidates', require('./directives/presidential/candidates/directive'))
 
