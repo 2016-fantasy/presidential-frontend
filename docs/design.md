@@ -44,6 +44,8 @@ These are merely ideas. Feel free to edit and commit :)
 4. The cycle continues daily until the virtual "election" is over and a winner is declared President.
 5. Repeat.
 
+BLAKE: Right now I'm thinking you get dropped into a "dashboard" (1 & 2). Each league may have a different (customizable) "view" of the "game". [We don't want to get too complicated, there should be coherent consistancies, and we will provide at least one "template" view that should be acceptable for many players.] I think mini-games are a great idea. As with everything else, it should probably be something that a league can choose to include (or even specialize in) or leave out. 
+
 ## Add-On Ideas
 Once we get the core game online and playable (launched) we should go back through and find nice ways to integrate relevant news into the game. Either a video player that exists on the side to play news while the user is on the site, an updating panel with current poll results from the real world, etc. Basically, turn this into a one-stop shop for Presidential Election 2016 news...and humor :)
 
