@@ -2,11 +2,50 @@ candidates {
   display: flex;
   flex-wrap: wrap;
 
-  justify-content: space-between;
+  flex: 1 0 auto;
 
-  overflow: auto;
+  .parties {
+    display: flex;
+    flex-direction: column;
 
-  .candidate {
-    flex: 0 0 auto;
+    flex: 0 1 auto;
+
+    overflow: auto;
+
+    .party {
+      display: inline-block;
+
+      flex: 1 0 auto;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(128, 128, 128, 0.5);
+      }
+    }
+  }
+
+  .candidates {
+    overflow: auto;
+
+    flex: 0 1 auto;
+
+    .candidate {
+      flex: 1 0 auto;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(128, 128, 128, 0.5);
+      }
+    }
+  }
+
+  .candidate-detail {
+    overflow: auto;
+
+    flex: 1 1 auto;
+
+
   }
 }

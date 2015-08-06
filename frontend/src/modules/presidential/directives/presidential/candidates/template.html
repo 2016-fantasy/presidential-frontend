@@ -1,4 +1,20 @@
-<div ng-repeat="candidate in candidates"
-     class="candidate">
-  {{candidate.name.display}}
+<div class="parties">
+  <div ng-repeat="party in parties | orderBy : '-candidates'"
+       ng-click="setParty(party)"
+       class="party">
+    ({{party.candidates}})  {{party.name}}
+  </div>
+</div>
+
+<div class="candidates">
+  <div ng-repeat="candidate in candidates | filter:candidateFilter  | orderBy : '-(totalContributions||0)'"
+       ng-click="setCandidate(candidate)"
+       class="candidate">
+    {{candidate.name.display}}
+  </div>
+</div>
+
+<div class="candidate-detail">
+  {{selectedCandidate.name.display}}
+  {{selectedCandidate.totalContributions}}
 </div>

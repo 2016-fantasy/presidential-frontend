@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 const {candidates} = require('../../../../../../../data/datasets/processed/candidates.json');
+const {parties} = require('../../../../../../../data/datasets/processed/parties.json');
 
 module.exports = () => ({
   // getDB,
@@ -8,12 +9,14 @@ module.exports = () => ({
   // getExercises,
   // getExerciseById,
   getCandidates,
+  getParties,
 
   getLeagues,
   getLeagueById
 });
 
 function getCandidates() { return candidates; } // This is a writable copy! Careful
+function getParties() { return parties; }
 
 // Just an in-memory stub
 const leagues = {
