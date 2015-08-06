@@ -176,7 +176,7 @@ gulp.task('rev',
     gulp.src([paths.rev.$all])
     ,p('rev:pre')
     ,(new revAll({
-      dontRenameFile: ['index\.html'],
+      dontRenameFile: ['index\.html', '\.jpg'],
       dontSearchFile: ['vendor.js']
     })).revision()
     ,p('rev:post')
