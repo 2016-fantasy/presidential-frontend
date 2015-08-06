@@ -49,7 +49,7 @@ BLAKE: Right now I'm thinking you get dropped into a "dashboard" (1 & 2). Each l
 ## Add-On Ideas
 Once we get the core game online and playable (launched) we should go back through and find nice ways to integrate relevant news into the game. Either a video player that exists on the side to play news while the user is on the site, an updating panel with current poll results from the real world, etc. Basically, turn this into a one-stop shop for Presidential Election 2016 news...and humor :)
 
-
+BLAKE: I love news integration. I think news should drive events that are consumed by leagues. Tie the information to the game.
 
 ## Alternate Fantasy Games
 
