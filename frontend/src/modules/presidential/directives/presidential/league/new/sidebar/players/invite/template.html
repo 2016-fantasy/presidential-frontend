@@ -1,0 +1,16 @@
+<div ng-if="invitedFriends.length > 0" class="invited">
+  <div class="header">{{invitedFriends.length}} Invited</div>
+  <div ng-repeat="friend in invitedFriends"
+       class="invited-friend">
+    {{::friend.name}}
+  </div>
+</div>
+
+<div class="services">
+  <div class="twitter"></div>
+  <div class="facebook"></div>
+  <div class="email"></div>
+  <div class="link"></div>
+</div>
+
+Invite Your Friends
