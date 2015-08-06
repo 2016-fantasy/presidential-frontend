@@ -98,3 +98,8 @@ There may be many types of drafts. Each league could choose the type of draft th
 #### Trading
 
 Sorry, but your candidate(s) may start to perform poorly in your league, so you should have a way to trade them or somehow dump them.
+
+#### Themed Leagues
+
+Themes are like simulations. The creation of their owners and players. It would probably be fun (and has been successfully done in other areas) to role-play at least what are perceived to be real-world roles. For example, you may play in a billionaire political hedge fund league where you and your fellow players "invest" (points, in-game currency, whatever) in various candidates and receive awards based on how well your candidates do with regard to various metrics defined by the league/fund. Another example might be a leauge of political strategists, lobbiests, or other ilk that is only seeking victory through complete domination. I don't think we want to get too far into the details of simulating all of these scenarios, but having some support to at least allow leagues to role-play it could be fun and entertaining.
+
