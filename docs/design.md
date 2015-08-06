@@ -6,7 +6,11 @@ This incredibly cynical fantasy league sport centered around the abject comedy o
 ## Game Logic
 Presidential Erection will present a series of mini games such as trivia, basic skill puzzles, basic arcade-style games and other lowest-common-denominator simple and fun game play that can either pit the user against their own knowledge of the candidates ("In what year was Hillary Clinton fired from the Nixon administration for unethical behavior?"), or pit two candidates against each other in basic mini-games such as boxing or skeet shooting/duck hunt style games.
 
+BLAKE: Just thinking of how to support this. What if you have "historical" event streams that leagues could draw from?
+
 I'd like to see darts (throw darts at a candidate's face), the "dunk" game (sits on board, throw a ball, hit a target, DUNK! into water), Whack-a-Puppet where the Presidential candidate heads pop up out of nine holes in a board, and you have to “whack” them back down with a mallet. Stuff like that. Carnival games, puzzles - easier is obviously better.
+
+BLAKE: I think if these are animated and highly stylized (as in, highly coherent satire) they would be great.
 
 ## Game Assets
 Will need music, sound effects, images and text. Not going to even try to iterate them all, but we're going to need some basics:
