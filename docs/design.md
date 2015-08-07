@@ -117,3 +117,5 @@ To implement this, we may want to develop generic data visualization components 
 ## Scrollbars
 
 Don't do them. Not native browser ones anyway.
+
+We should have an 'infinite' scroll component that just cycles through its list over and over and over and over and over...
