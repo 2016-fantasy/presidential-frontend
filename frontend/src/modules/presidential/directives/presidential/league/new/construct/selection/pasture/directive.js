@@ -5,7 +5,6 @@ export default () => {
     restrict: 'E',
     template: require('./template.html'),
     link: ($scope, element, attributes) => {
-      console.log({element});
       const pasture = element[0],
             wrapper = pasture.children[0],
             candidates = wrapper.children[0];
@@ -21,10 +20,10 @@ export default () => {
         // This should be changed to scroll the middle of the screen to the clicked point
         // Currently it will scroll the top of the screen to the clicked point
         const {clientY, target} = $event,
-              {clientHeight, offsetTop} = target,
+              {clientHeight, offsetHeight, offsetTop} = target,
               {scrollHeight} = wrapper;
 
-        const height = clientY - offsetTop,
+        const height = clientY - (offsetHeight + offsetTop),
               location = height / clientHeight,
               top = location * scrollHeight;
 
@@ -33,6 +32,16 @@ export default () => {
 
       function setBarPosition() {
         const {clientHeight, scrollHeight, scrollTop} = wrapper;
+
+        const visibleProportion = Math.min(scrollHeight - scrollTop, clientHeight) / scrollHeight,
+              topProportion = scrollTop / scrollHeight,
+              bottomProportion = 1 - topProportion - visibleProportion;
+
+        $scope.topMaskHeight = topProportion * 100;
+        $scope.topMaskTop = 0;
+        $scope.bottomMaskHeight = bottomProportion * 100;
+        $scope.bottomMaskTop = (1 - bottomProportion) * 100;
+
 
         $scope.barHeight = 100 * (clientHeight / scrollHeight) + '%';
         $scope.barTop = 100 * (scrollTop / scrollHeight) + '%';

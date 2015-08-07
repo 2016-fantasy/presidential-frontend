@@ -22,11 +22,18 @@
     <div class="axis-label">Tier</div>
   </div>
   <div class="scale">
-    <div class="top">$$$</div>
-    <div ng-click="barClick($event)"
-         class="bar">
-      <div class="position" ng-style="{'height': barHeight, 'top': barTop}"></div>
+    <div class="background">
+      <div class="top">$$$</div>
+      <div class="bar"> </div>
+      <div class="bottom">Who?</div>
     </div>
-    <div class="bottom">Who?</div>
+
+    <div class="masks">
+      <div class="mask mask-top" ng-style="{'height': topMaskHeight + '%', 'top': topMaskTop + '%'}"></div>
+      <div class="mask mask-bottom" ng-style="{'height': bottomMaskHeight + '%', 'top': bottomMaskTop + '%'}"></div>
+
+      <div class="target"
+         ng-click="barClick($event)"></div>
+    </div>
   </div>
 </div>
