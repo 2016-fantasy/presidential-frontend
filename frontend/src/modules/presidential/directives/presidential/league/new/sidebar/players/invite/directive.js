@@ -3,7 +3,7 @@ export default () => {
     restrict: 'E',
     template: require('./template.html'),
     controller: ['$scope', $scope => {
-      $scope.invitedFriends = [{name: 'Rob'}];
+      $scope.invitedFriends = [{name: 'Rob'}, {name: 'Unknown'}];
     }]
   };
 };

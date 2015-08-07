@@ -1,8 +1,4 @@
 invite {
-  .services {
-    display: flex;
-  }
-
   .invited {
     .header {
       margin-bottom: 0.1em;
@@ -16,5 +12,33 @@ invite {
 
       color: #999;
     }
+  }
+
+  .services {
+    display: flex;
+
+    justify-content: space-around;
+
+    font-size: 1.5rem;
+
+    margin-top: 1rem;
+
+    .service {
+      cursor: pointer;
+
+      &:hover {
+        color: #f00;
+
+        &.twitter { color: #ccf; }
+        &.facebook { color: #00f; }
+        &.email { color: #3c3; }
+        &.link { color: #999; }
+      }
+    }
+  }
+
+  .prompt {
+    text-align: center;
+    font-weight: bold;
   }
 }

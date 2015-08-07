@@ -1,1 +1,32 @@
-pasture
+<div class="wrapper">
+  <div class="candidates">
+    <div ng-repeat="candidate in candidates"
+         ng-if="!hide[candidate.fecId]"
+         class="candidate">
+      <img ng-if="candidate.image"
+           src="/assets/images/{{candidate.image}}">
+      <div ng-if="show[candidate.fecId]" class="overlay">
+        <span>{{candidate.name.display}}</span>
+      </div>
+      <div ng-mouseenter="hover(candidate)"
+           ng-mouseout="unhover(candidate)"
+           ng-click="select(candidate)"
+           class="hover-detector">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="indicator">
+  <div class="axis-wrap">
+    <div class="axis-label">Tier</div>
+  </div>
+  <div class="scale">
+    <div class="top">$$$</div>
+    <div ng-click="barClick($event)"
+         class="bar">
+      <div class="position" ng-style="{'height': barHeight, 'top': barTop}"></div>
+    </div>
+    <div class="bottom">Who?</div>
+  </div>
+</div>

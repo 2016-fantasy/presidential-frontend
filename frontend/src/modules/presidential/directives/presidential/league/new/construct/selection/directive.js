@@ -1,4 +1,4 @@
-module.exports = () => {
+export default () => {
   return {
     restrict: 'E',
     template: require('./template.html'),

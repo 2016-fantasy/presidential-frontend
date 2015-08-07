@@ -2,8 +2,8 @@ export default () => {
   return {
     restrict: 'E',
     template: require('./template.html'),
-    controller: ['$scope', $scope => {
-
+    controller: ['$scope', 'dataStore', ($scope, dataStore) => {
+      $scope.league = dataStore.createLeague();
     }]
   };
 };

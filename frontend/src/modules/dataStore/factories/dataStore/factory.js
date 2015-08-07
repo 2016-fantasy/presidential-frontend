@@ -12,7 +12,9 @@ module.exports = () => ({
   getParties,
 
   getLeagues,
-  getLeagueById
+  getLeagueById,
+
+  createLeague
 });
 
 function getCandidates() { return candidates; } // This is a writable copy! Careful
@@ -29,6 +31,14 @@ const leagues = {
 function getLeagues() { return leagues; }
 function getLeagueById(id) {
   return leagues[id];
+}
+
+// Putting this here just so it's by these other data functions.
+// Most of this will be moved out eventually
+function createLeague() {
+  return {
+    stable: []
+  };
 }
 
 // Ignore the rest. This is a work-in-progress for an

@@ -1,3 +1,89 @@
 stable {
+  display: flex;
 
+  overflow: auto;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+
+    align-items: stretch;
+    // justify-content: center;
+
+    flex: 1 0 auto;
+
+    .header {
+      flex: 0 0 auto;
+
+      text-align: center;
+
+      font-weight: bold;
+    }
+
+    .candidate-wrapper {
+      display: flex;
+
+      justify-content: stretch;
+
+      flex: 1 1 auto;
+
+      overflow: auto;
+
+      .candidate-inner-wrapper {
+        display: flex;
+
+        // : center;
+
+        flex: 1 1 auto;
+
+        .candidates {
+          display: flex;
+          flex-direction: column;
+
+          flex-wrap: wrap;
+
+          justify-content: center;
+
+          flex: 0 0 auto;
+
+          .candidate {
+            position: relative;
+
+            display: flex;
+
+            width: 20em;
+
+            margin: 0.1em;
+
+            background-color: rgba(64, 64, 64, 0.2);
+
+            cursor: pointer;
+
+            transition: all 0.25s ease-in-out;
+
+            &.ng-enter, &.ng-leave.ng-leave-active { opacity: 0; }
+            &.ng-leave, &.ng-enter.ng-enter-active { opacity: 1; }
+
+            img {
+              width: 4em;
+              max-height: 3em;
+            }
+
+            .detail {
+              padding: 0.25em;
+            }
+
+            .hover-detector {
+              position: absolute;
+              top: 0;
+              left: 0;
+
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
 }
