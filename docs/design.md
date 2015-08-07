@@ -113,3 +113,7 @@ When possible, any data display (ie. list) should allow the user to filter, slic
 When displaying a list of candidates (eg. in the current league creation prototype), allow the user to filter by party, sort by campaign contributions, or other dimensions of interest.
 
 To implement this, we may want to develop generic data visualization components that can be used and customized across the application.
+
+## Scrollbars
+
+Don't do them. Not native browser ones anyway.
