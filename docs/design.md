@@ -40,7 +40,7 @@ I'm not voting for whether we should irritatingly ask users to share accomplishm
 
 Large, heavily-animated pop-ups asking me to share, share, share, share, share do not excite me and most other people. A simple, "Share This Result" button on a progress dialog or "You Won!" dialog that's going to happen anyway is not out-of-bounds to me at all. Popping them up every single time the user gets a question correct or whacks a mole is out-of-bounds for me.
 
-BLAKE: Agreed. I do think sharing could/should be a large aspect of the game, but it should mostly happen inside the league data structures (so that we can access it and manipulate it in cool ways). We should definitely facilitate spreading links to the site, but the goal is not necessarily to push content to Twitter/Facebook/et.al. 
+BLAKE: Agreed. I do think sharing could/should be a large aspect of the game, but it should mostly happen inside the league data structures (so that we can access it and manipulate it in cool ways). We should definitely facilitate spreading links to the site, but the goal is not necessarily to push content to Twitter/Facebook/et.al.
 
 ## Leagues
 Each user will need an account against which we can store score. Would like to allow signup with Facebook and/or Twitter to get them a basic identity against which we can file their scores and rank them against their friends.
@@ -62,7 +62,7 @@ These are merely ideas. Feel free to edit and commit :)
 4. The cycle continues daily until the virtual "election" is over and a winner is declared President.
 5. Repeat.
 
-BLAKE: Right now I'm thinking you get dropped into a "dashboard" (1 & 2). Each league may have a different (customizable) "view" of the "game". [We don't want to get too complicated, there should be coherent consistancies, and we will provide at least one "template" view that should be acceptable for many players.] I think mini-games are a great idea. As with everything else, it should probably be something that a league can choose to include (or even specialize in) or leave out. 
+BLAKE: Right now I'm thinking you get dropped into a "dashboard" (1 & 2). Each league may have a different (customizable) "view" of the "game". [We don't want to get too complicated, there should be coherent consistancies, and we will provide at least one "template" view that should be acceptable for many players.] I think mini-games are a great idea. As with everything else, it should probably be something that a league can choose to include (or even specialize in) or leave out.
 
 ## Add-On Ideas
 Once we get the core game online and playable (launched) we should go back through and find nice ways to integrate relevant news into the game. Either a video player that exists on the side to play news while the user is on the site, an updating panel with current poll results from the real world, etc. Basically, turn this into a one-stop shop for Presidential Election 2016 news...and humor :)
@@ -103,3 +103,13 @@ Sorry, but your candidate(s) may start to perform poorly in your league, so you 
 
 Themes are like simulations. The creation of their owners and players. It would probably be fun (and has been successfully done in other areas) to role-play at least what are perceived to be real-world roles. For example, you may play in a billionaire political hedge fund league where you and your fellow players "invest" (points, in-game currency, whatever) in various candidates and receive awards based on how well your candidates do with regard to various metrics defined by the league/fund. Another example might be a leauge of political strategists, lobbiests, or other ilk that is only seeking victory through complete domination. I don't think we want to get too far into the details of simulating all of these scenarios, but having some support to at least allow leagues to role-play it could be fun and entertaining.
 
+
+## Data Displays
+
+When possible, any data display (ie. list) should allow the user to filter, slice, aggregate, group, etc. across any dimensions that make sense.
+
+### Examples
+
+When displaying a list of candidates (eg. in the current league creation prototype), allow the user to filter by party, sort by campaign contributions, or other dimensions of interest.
+
+To implement this, we may want to develop generic data visualization components that can be used and customized across the application.
