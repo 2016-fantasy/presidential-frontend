@@ -22,3 +22,11 @@ Example: If a player drafts only candidates from a single party, they are awarde
 #Global Achievements
 
 Example: When creating a league, adding any candidate to your stable earns you the Donor Achievement. Adding most of the Republican party earns you the Koch Achievement. Et cetra.
+
+
+#Activities / Games
+
+## Talking Points
+
+Members are awarded points for how many times one of their racers says specific words (defined somewhere) during an event or collection of events.
+
