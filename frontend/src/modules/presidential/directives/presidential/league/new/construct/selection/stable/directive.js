@@ -9,6 +9,10 @@ export default() => {
       $scope.select = candidate => {
         //Should probably show a menu with some options
       };
+
+      $scope.gotoDraft = () => {
+        alert('draft');
+      };
     }]
   };
 };
