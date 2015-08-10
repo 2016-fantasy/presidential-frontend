@@ -1,39 +1,53 @@
-<div class="wrapper">
-  <div class="candidates">
-    <div ng-repeat="candidate in candidates"
-         ng-if="!hide[candidate.fecId]"
-         class="candidate">
-      <img ng-if="candidate.image"
-           src="/assets/images/{{candidate.image}}">
-      <div ng-if="show[candidate.fecId]" class="overlay">
-        <span>{{candidate.name.display}}</span>
-      </div>
-      <div ng-mouseenter="hover(candidate)"
-           ng-mouseout="unhover(candidate)"
-           ng-click="select(candidate)"
-           class="hover-detector">
+<div ng-class="{'scroll-capture': true, 'is-touch': isTouch}"
+     scroll="scroll($event)">
+  <div class="wrapper">
+    <div class="inner-wrapper">
+      <div class="candidates"
+           ng-style="{'top': candidatesTop + 'px'}">
+        <div ng-repeat="candidate in candidates"
+             ng-if="!hide[candidate.fecId]"
+             class="candidate">
+          <img ng-if="candidate.image"
+               src="/assets/images/{{candidate.image}}">
+          <div ng-if="show[candidate.fecId]" class="overlay">
+            <span>{{candidate.name.display}}</span>
+          </div>
+          <div ng-mouseenter="hover(candidate)"
+               ng-mouseout="unhover(candidate)"
+               ng-click="select(candidate)"
+               class="hover-detector">
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="indicator">
-  <div class="axis-wrap">
-    <div class="axis-label">Candidate&nbsp;Tier</div>
-  </div>
-  <div class="scale">
-    <div class="background">
-      <div class="top">$$$</div>
-      <div class="bar"> </div>
-      <div class="bottom">Who?</div>
+  <div class="indicator">
+    <div class="axis-wrap">
+      <div class="axis-label">Candidate&nbsp;Tier</div>
     </div>
+    <div class="scale">
+      <div class="background">
+        <div class="top">$$$</div>
+        <div class="bar"> </div>
+        <div class="bottom">Who?</div>
+      </div>
 
-    <div class="masks">
-      <div class="mask mask-top" ng-style="{'height': topMaskHeight + '%', 'top': topMaskTop + '%'}"></div>
-      <div class="mask mask-bottom" ng-style="{'height': bottomMaskHeight + '%', 'top': bottomMaskTop + '%'}"></div>
+      <div class="masks">
+        <div class="mask mask-top"
+             ng-style="{
+                        'height': (100 * topMaskHeight) + '%',
+                        'top': (100 * topMaskTop) + '%'
+                       }"></div>
+        <div class="mask mask-bottom"
+             ng-style="{
+                        'height': (100 * bottomMaskHeight) + '%',
+                        'top': (100 * bottomMaskTop) + '%'
+                       }"></div>
 
-      <div class="target"
-         ng-click="barClick($event)"></div>
+        <div class="target"
+           ng-click="barClick($event)"></div>
+      </div>
     </div>
   </div>
 </div>

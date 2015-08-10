@@ -3,7 +3,7 @@ export default () => {
     restrict: 'E',
     template: require('./template.html'),
     controller: ['$scope', 'dataStore', ($scope, dataStore) => {
-
+      $scope.sidebarVisible = false;
     }]
   };
 };

@@ -1,182 +1,210 @@
 pasture {
   display: flex;
 
-  flex: 1 0 auto;
+  flex: 1 1 auto;
 
-  .indicator {
+  .scroll-capture {
     display: flex;
 
-    flex: 0 0 auto;
+    align-items: stretch;
 
-    order: -1;
+    flex: 1 1 auto;
 
-    .axis-wrap {
-      position: relative;
-
-      width: 0.9em;
-      // font-size: 0.7em;
-
-      .axis-label {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-
-        letter-spacing: 0.4em;
-        text-transform: uppercase;
-
-        transform: translateX(-50%) translateY(-50%) rotateZ(-90deg);
+    &.is-touch {
+      .wrapper {
+        .candidates {
+          transition: none;
+        }
       }
     }
 
-    .scale {
-      position: relative;
-
+    .indicator {
       display: flex;
 
-      justify-content: space-between;
+      flex: 0 0 auto;
 
-      flex: 1 0 auto;
+      order: -1;
 
-      text-align: center;
+      .axis-wrap {
+        position: relative;
 
-      .background {
-        display: flex;
-        flex-direction: column;
+        width: 0.9em;
+        // font-size: 0.7em;
 
-        flex: 1 0 auto;
+        .axis-label {
+          position: absolute;
+          top: 50%;
+          left: 50%;
 
-        .top {
-          font-size: 1em;
-          font-weight: bold;
-          color: #0f0;
-          text-shadow: 0px 0px 5px #ff0;
-        }
+          letter-spacing: 0.4em;
+          text-transform: uppercase;
 
-        .bar {
-          flex: 1 1 auto;
-
-          background: radial-gradient(farthest-side at 50% 10%, rgba(0, 255, 0, 1) 0%, rgba(0, 128, 0, 0.25) 50%, rgba(0, 64, 0, 0.15) 80%, rgba(0, 0, 0, 0) 100%);
-        }
-
-        .bottom {
-          font-size: 0.5em;
-          text-shadow: 0px 0px 5px #000;
+          transform: translateX(-50%) translateY(-50%) rotateZ(-90deg);
         }
       }
 
-      .masks {
-        position: absolute;
-        top: 0;
-        left: 0;
-
-        flex: 1 0 auto;
-
-        width: 100%;
-        height: 100%;
-
-        .mask {
-          position: absolute;
-          top: 0;
-          left: 0;
-
-          width: 100%;
-
-          background-color: rgba(0, 0, 0, 0.75);
-
-          transition: all 0.25s ease-in-out;
-
-          &.mask-top {
-            border-bottom: solid 1px rgba(255, 255, 0, 0.6);
-          }
-
-          &.mask-bottom {
-            border-top: solid 1px rgba(255, 255, 0, 0.6);
-          }
-        }
-
-        .target {
-          position: absolute;
-          top: 0;
-          left: 0;
-
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-  }
-
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-
-    flex: 0 1 auto;
-
-    overflow: auto;
-
-    .candidates {
-      display: flex;
-      flex-wrap: wrap;
-
-      justify-content: space-around;
-
-      flex: 1 0 auto;
-
-      overflow: auto;
-
-      .candidate {
+      .scale {
         position: relative;
 
         display: flex;
 
-        align-items: center;
+        justify-content: space-between;
 
-        margin: 0.25em;
+        flex: 1 0 auto;
 
-        cursor: pointer;
+        text-align: center;
 
-        transition: all 0.25s ease-in-out;
-
-        &.ng-enter, &.ng-leave.ng-leave-active { opacity: 0; }
-        &.ng-leave, &.ng-enter.ng-enter-active { opacity: 1; }
-
-        img {
-          width: 7em;
-        }
-
-        .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-
-          height: 100%;
-          width: 100%;
-
+        .background {
           display: flex;
+          flex-direction: column;
 
-          justify-content: center;
-          align-items: center;
+          flex: 1 0 auto;
 
-          font-size: 1.1em;
-          font-weight: bold;
+          .top {
+            font-size: 1em;
+            font-weight: bold;
+            color: #0f0;
+            text-shadow: 0px 0px 5px #ff0;
+          }
 
-          color: #fff;
+          .bar {
+            flex: 1 1 auto;
 
-          text-shadow: 0px 0px 10px #000;
+            background: radial-gradient(farthest-side at 50% 10%, rgba(0, 255, 0, 1) 0%, rgba(0, 128, 0, 0.25) 50%, rgba(0, 64, 0, 0.15) 80%, rgba(0, 0, 0, 0) 100%);
+          }
 
-          span {
-            word-wrap: break-word;
-            text-align: center;
+          .bottom {
+            font-size: 0.5em;
+            text-shadow: 0px 0px 5px #000;
           }
         }
 
-        .hover-detector {
+        .masks {
           position: absolute;
           top: 0;
           left: 0;
 
+          flex: 1 0 auto;
+
           width: 100%;
           height: 100%;
+
+          .mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            background-color: rgba(0, 0, 0, 0.75);
+
+            transition: all 0.25s ease-in-out;
+
+            &.mask-top {
+              border-bottom: solid 1px rgba(255, 255, 0, 0.6);
+            }
+
+            &.mask-bottom {
+              border-top: solid 1px rgba(255, 255, 0, 0.6);
+            }
+          }
+
+          .target {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    .wrapper {
+      display: flex;
+
+      flex: 1 1 auto;
+
+      .inner-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        // height: 20em;
+        flex: 1 1 auto;
+
+        overflow: hidden;
+
+        .candidates {
+          position: relative;
+
+          display: flex;
+          flex-wrap: wrap;
+
+          justify-content: space-around;
+
+          flex: 0 0 auto;
+
+          transition: all 0.1s ease-in-out;
+
+          .candidate {
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            margin: 0.25em;
+
+            cursor: pointer;
+
+            transition: all 0.66s ease-in;
+
+            &.ng-enter, &.ng-leave.ng-leave-active { opacity: 0; transform: scale(0); }
+            &.ng-leave, &.ng-enter.ng-enter-active { opacity: 1; transform: scale(1); }
+
+            img {
+              width: 12vw;
+
+              max-width: 20vw;
+              min-width: 7em;
+            }
+
+            .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+
+              height: 100%;
+              width: 100%;
+
+              display: flex;
+
+              justify-content: center;
+              align-items: center;
+
+              font-size: 1.1em;
+              font-weight: bold;
+
+              color: #fff;
+
+              text-shadow: 0px 0px 10px #000;
+
+              span {
+                word-wrap: break-word;
+                text-align: center;
+              }
+            }
+
+            .hover-detector {
+              position: absolute;
+              top: 0;
+              left: 0;
+
+              width: 100%;
+              height: 100%;
+            }
+          }
         }
       }
     }

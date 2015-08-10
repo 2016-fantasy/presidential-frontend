@@ -5,33 +5,99 @@ export default () => {
     restrict: 'E',
     template: require('./template.html'),
     link: ($scope, element, attributes) => {
-      const pasture = element[0],
+      const scrollCapture = element[0],
+            pasture = scrollCapture.children[0],
             wrapper = pasture.children[0],
             candidates = wrapper.children[0];
 
-      $scope.setBarPosition = setBarPosition;
+      $scope.setMaskPosition = setMaskPosition;
 
       //these should be removed when the directive is destroyed...
-      wrapper.addEventListener('resize', () => setBarPosition());
-      wrapper.addEventListener('scroll', () => $scope.$apply(setBarPosition));
+      scrollCapture.addEventListener('resize', () => setMaskPosition());
+      wrapper.addEventListener('scroll', () => $scope.$apply(setMaskPosition));
 
       //this should also be called while dragging on the bar
       $scope.barClick = $event => {
         // This should be changed to scroll the middle of the screen to the clicked point
         // Currently it will scroll the top of the screen to the clicked point
-        const {clientY, target} = $event,
+        const {offsetY, target} = $event, // Is this (offsetY) cross browser?
               {clientHeight, offsetHeight, offsetTop} = target,
               {scrollHeight} = wrapper;
 
-        const height = clientY - (offsetHeight + offsetTop),
+        const height = offsetY,
               location = height / clientHeight,
               top = location * scrollHeight;
 
         wrapper.scrollTop = top;
+
+        setLocation(location);
       };
 
+      $scope.scroll = $event => {
+        const {deltaY, isTouch} = $event,
+              {clientHeight} = candidates,
+              // location = (offset + deltaY) / clientHeight;
+              location = (offset + (deltaY > 0 ? 50 : -50)) / clientHeight;
+
+        $scope.isTouch = isTouch;
+
+        setLocation(location);
+      };
+
+      let location = 0,
+          offset = 0;
+      function setLocation(value) {
+        const {clientHeight} = candidates;
+
+        location = clamp(0, value, 1);
+
+        setOffset(location * clientHeight);
+      }
+
+      function setOffset(value) {
+        const {clientHeight} = candidates;
+
+        offset = clamp(0, value, clientHeight);
+
+        setCandidatesPosition();
+        setMaskPosition();
+      }
+
+      function setCandidatesPosition() {
+        $scope.candidatesTop = -offset;
+      }
+
+      function setMaskPosition() {
+        const visible = wrapper.clientHeight / candidates.clientHeight;
+
+        const top = Math.max(location, 0),
+              bottom = Math.max(1 - top - visible, 0);
+
+        $scope.topMaskHeight = top ;
+        $scope.topMaskTop = 0;
+        $scope.bottomMaskHeight = bottom ;
+        $scope.bottomMaskTop = (1 - bottom) ;
+      }
+
+      // function setMaskPosition(top) {
+      //   const {clientHeight, scrollHeight, scrollTop} = candidates;
+
+      //   const visibleProportion = Math.min(scrollHeight - scrollTop, clientHeight) / scrollHeight,
+      //         topProportion = scrollTop / scrollHeight,
+      //         bottomProportion = 1 - topProportion - visibleProportion;
+
+      //   $scope.topMaskHeight = topProportion * 100;
+      //   $scope.topMaskTop = 0;
+      //   $scope.bottomMaskHeight = bottomProportion * 100;
+      //   $scope.bottomMaskTop = (1 - bottomProportion) * 100;
+
+
+      //   $scope.barHeight = 100 * (clientHeight / scrollHeight) + '%';
+      //   $scope.barTop = 100 * (scrollTop / scrollHeight) + '%';
+      // }
+
       function setBarPosition() {
-        const {clientHeight, scrollHeight, scrollTop} = wrapper;
+        const {clientHeight, scrollHeight, scrollTop} = candidates;
 
         const visibleProportion = Math.min(scrollHeight - scrollTop, clientHeight) / scrollHeight,
               topProportion = scrollTop / scrollHeight,
@@ -63,11 +129,13 @@ export default () => {
         hide[fecId] = true;
         $scope.league.stable.unshift(candidate);
 
-        $scope.setBarPosition();
+        $scope.setMaskPosition();
       };
 
       // Cheating, but it works for now
-      $timeout(() => $scope.setBarPosition(), 500);
+      $timeout(() => $scope.setMaskPosition(), 500);
     }]
   };
 };
+
+function clamp(min, value, max) { return Math.min(Math.max(value, min), max); }

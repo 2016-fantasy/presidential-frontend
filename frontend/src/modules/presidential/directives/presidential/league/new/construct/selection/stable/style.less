@@ -8,7 +8,7 @@ stable {
     flex-direction: column;
 
     align-items: stretch;
-    // justify-content: center;
+    justify-content: center;
 
     flex: 1 0 auto;
 
@@ -49,6 +49,8 @@ stable {
 
             display: flex;
 
+            align-items: center;
+
             width: 20em;
 
             margin: 0.1em;
@@ -57,10 +59,10 @@ stable {
 
             cursor: pointer;
 
-            transition: all 0.25s ease-in-out;
+            transition: all 0.66s ease-in-out;
 
-            &.ng-enter, &.ng-leave.ng-leave-active { opacity: 0; }
-            &.ng-leave, &.ng-enter.ng-enter-active { opacity: 1; }
+            &.ng-enter, &.ng-leave.ng-leave-active { opacity: 0; transform: scale(0); }
+            &.ng-leave, &.ng-enter.ng-enter-active { opacity: 1; transform: scale(1); }
 
             img {
               width: 4em;
