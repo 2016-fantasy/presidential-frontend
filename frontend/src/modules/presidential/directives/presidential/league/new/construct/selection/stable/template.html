@@ -6,20 +6,18 @@
          class="draft">Set Draft</div>
   </div>
   <div class="candidate-wrapper">
-    <div class="candidate-inner-wrapper">
-      <div class="candidates">
-        <div ng-repeat="candidate in league.stable"
-             class="candidate">
-          <img ng-if="candidate.image"
-               src="/assets/images/{{candidate.image}}">
-          <div class="detail">
-            <span class="name">{{candidate.name.display}}</span>
-            <span class="party">{{candidate.party}}</span>
-            <span class="total-contributions">{{candidate.totalContributions}}</span>
-          </div>
-          <div ng-click="select(candidate)"
-               class="hover-detector">
-          </div>
+    <div ng-class="'candidates candidates-log-' + getStableLogSize()">
+      <div ng-repeat="candidate in league.stable"
+           class="candidate">
+        <img ng-if="candidate.image"
+             src="/assets/images/{{candidate.image}}">
+        <div class="detail">
+          <span class="name">{{candidate.name.display}}</span>
+          <span class="party">{{candidate.party}}</span>
+          <span class="total-contributions">{{candidate.totalContributions}}</span>
+        </div>
+        <div ng-click="select(candidate)"
+             class="hover-detector">
         </div>
       </div>
     </div>

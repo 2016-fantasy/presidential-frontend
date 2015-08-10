@@ -13,6 +13,10 @@ export default() => {
       $scope.gotoDraft = () => {
         alert('draft');
       };
+
+      $scope.getStableLogSize = () => {
+        return Math.ceil(Math.log($scope.league.stable.length));
+      };
     }]
   };
 };
