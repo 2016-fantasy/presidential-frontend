@@ -1,11 +1,13 @@
 <div ng-if="league.stable.length > 0"
+     scroll="scroll($event)"
      class="wrapper">
   <div class="header">
     <div class="title">Your League's Stable</div>
     <div ng-click="gotoDraft()"
          class="draft">Set Draft</div>
   </div>
-  <div class="candidate-wrapper">
+  <div ng-style="{'left': candidateWrapperLeft + 'px'}"
+       class="candidate-wrapper">
     <div ng-class="'candidates candidates-log-' + getStableLogSize()">
       <div ng-repeat="candidate in league.stable"
            class="candidate">
