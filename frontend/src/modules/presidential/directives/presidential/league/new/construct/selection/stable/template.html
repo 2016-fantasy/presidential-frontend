@@ -1,14 +1,17 @@
 <div ng-if="league.stable.length > 0"
      scroll="scroll($event)"
-     class="wrapper">
+     ng-class="'wrapper candidates-log-size-' + getStableLogSize()">
   <div class="header">
-    <div class="title">Your League's Stable</div>
+    <div class="words">
+      <div class="title">Your League's Stable</div>
+      <div class="candidate-count">({{league.stable.length}}) Candidate{{league.stable.length > 1 ? 's' : ''}}</div>
+    </div>
     <div ng-click="gotoDraft()"
          class="draft">Set Draft</div>
   </div>
   <div ng-style="{'left': candidateWrapperLeft + 'px'}"
        class="candidate-wrapper">
-    <div ng-class="'candidates candidates-log-' + getStableLogSize()">
+    <div class="candidates">
       <div ng-repeat="candidate in league.stable"
            class="candidate">
         <img ng-if="candidate.image"

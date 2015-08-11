@@ -1,16 +1,121 @@
 stable {
   display: flex;
 
-  overflow: hidden;
-
   .wrapper {
     display: flex;
     flex-direction: column;
 
-    align-items: stretch;
-    justify-content: center;
+    flex: 1 1 auto;
 
-    flex: 1 0 auto;
+    &.candidates-log-size-0 {
+      .candidate-wrapper {
+        height: 4em;
+
+        .candidate {
+
+        }
+      }
+    }
+
+    &.candidates-log-size-1 {
+      .candidate-wrapper {
+        height: 8em;
+
+        .candidate {
+
+        }
+      }
+    }
+
+    &.candidates-log-size-2 {
+      .candidate-wrapper {
+        height: 12em;
+
+        .candidate {
+
+        }
+      }
+    }
+
+    &.candidates-log-size-3 {
+      .candidate-wrapper {
+        height: 16em;
+
+        .candidate {
+
+        }
+      }
+    }
+
+    &.candidates-log-size-4 {
+      .candidate-wrapper {
+        height: 20em;
+
+        .candidate {
+
+        }
+      }
+    }
+
+    &.candidates-log-size-5 {
+      .candidate-wrapper {
+        height: 24em;
+
+        .candidate {
+
+        }
+      }
+    }
+
+    &.candidates-log-size-6 {
+      .candidate-wrapper {
+        height: 30em;
+
+        .candidate {
+
+        }
+      }
+    }
+
+    &.candidates-log-size-7 {
+      .candidate-wrapper {
+        height: 34em;
+
+        .candidate {
+
+        }
+      }
+    }
+
+    &.candidates-log-size-8 {
+      .candidate-wrapper {
+        height: 40em;
+
+        .candidate {
+
+        }
+      }
+    }
+
+    &.candidates-log-size-9 {
+      .candidate-wrapper {
+        height: 44em;
+
+        .candidate {
+
+        }
+      }
+    }
+
+    &.candidates-log-size-10 {
+      .candidate-wrapper {
+        height: 48em;
+
+        .candidate {
+
+        }
+      }
+    }
 
     .header {
       display: flex;
@@ -20,15 +125,24 @@ stable {
       justify-content: space-between;
       align-items: center;
 
-      .title {
-        padding: 0.5em;
-        flex: 1 1 auto;
+      margin-bottom: 0.25em;
+
+      .words {
+        .title {
+          padding: 0 0.25em;
+          flex: 1 0 auto;
+        }
+
+        .candidate-count {
+          padding-left: 2em;
+          padding-bottom: 0.25em;
+        }
       }
 
       .draft {
-        flex: 0 1 auto;
+        flex: 0 0 auto;
 
-        padding: 0.75em;
+        padding: 0.5em;
       }
     }
 
@@ -37,7 +151,11 @@ stable {
 
       display: flex;
 
-      flex: 1 1 auto;
+      flex: 0 1 auto;
+
+      height: 0em;
+
+      transition: all 0.25s ease-in-out;
 
       .candidates {
         position: absolute;
@@ -54,30 +172,6 @@ stable {
         justify-content: center;
 
         flex: 0 0 auto;
-
-        &.candidates-log-0 {
-          .candidate {
-
-          }
-        }
-
-        &.candidates-log-1 {
-          .candidate {
-
-          }
-        }
-
-        &.candidates-log-2 {
-          .candidate {
-
-          }
-        }
-
-        &.candidates-log-3 {
-          .candidate {
-
-          }
-        }
 
         .candidate {
           position: relative;

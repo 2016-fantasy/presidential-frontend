@@ -8,6 +8,10 @@ export default() => {
     controller: ['$scope', $scope => {
       $scope.select = candidate => {
         //Should probably show a menu with some options
+        const {stable} = $scope.league,
+              index = stable.indexOf(candidate);
+
+        if (index >= 0) stable.splice(index, 1);
       };
 
       $scope.gotoDraft = () => {
