@@ -7,8 +7,7 @@
         <div ng-repeat="candidate in candidates"
              ng-if="!hide[candidate.fecId]"
              class="candidate">
-          <img ng-if="candidate.image"
-               src="/assets/images/{{candidate.image}}">
+          <img src="/assets/images/{{candidate.image || '_who.jpg'}}">
           <div ng-if="show[candidate.fecId]" class="overlay">
             <span>{{candidate.name.display}}</span>
           </div>
