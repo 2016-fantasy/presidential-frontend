@@ -8,13 +8,28 @@ export default () => {
       const scrollCapture = element[0],
             pasture = scrollCapture.children[0],
             wrapper = pasture.children[0],
-            candidates = wrapper.children[0];
+            innerWrapper = wrapper.children[0],
+            candidates = innerWrapper.children[0];
 
       $scope.setMaskPosition = setMaskPosition;
 
       //these should be removed when the directive is destroyed...
-      scrollCapture.addEventListener('resize', () => setMaskPosition());
-      wrapper.addEventListener('scroll', () => $scope.$apply(setMaskPosition));
+      window.addEventListener('resize', resize);
+      scrollCapture.addEventListener('resize', resize);
+      wrapper.addEventListener('resize', resize);
+      wrapper.addEventListener('scroll', resize);
+
+      $scope.$on('$destroy', () => {
+        console.log('Destroying');
+        wrapper.removeEventListener('scroll', resize);
+        wrapper.removeEventListener('resize', resize);
+        scrollCapture.removeEventListener('resize', resize);
+        window.removeEventListener('resize', resize);
+      });
+
+      function resize() {
+        $scope.$apply(setMaskPosition);
+      }
 
       //this should also be called while dragging on the bar
       $scope.barClick = $event => {
@@ -76,7 +91,7 @@ export default () => {
         $scope.topMaskHeight = top ;
         $scope.topMaskTop = 0;
         $scope.bottomMaskHeight = bottom ;
-        $scope.bottomMaskTop = (1 - bottom) ;
+        $scope.bottomMaskTop = (1 - bottom);
       }
 
       // function setMaskPosition(top) {
