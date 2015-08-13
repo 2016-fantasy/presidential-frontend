@@ -48,11 +48,47 @@ stable {
     .candidate-wrapper {
       .candidates {
         .candidate {
+          font-weight: bold;
+
+          text-shadow: 0px 0px 2px #000;
+
+          &.party-constitutional { background-color: #f0f; }
+          &.party-democrat       { background-color: #0f2446; }
+          &.party-green          { background-color: #0f0; }
+          &.party-independent    { background-color: #fff; color: #000; text-shadow: 0px 0px 2px #fff; }
+          &.party-libertarian    { background: linear-gradient(#f00 0%, #00f 50%, #f00 100%); }
+          &.party-none           { background-color: #000; }
+          &.party-other          { background-color: #ff0; color: #000; text-shadow: 0px 0px 2px #fff; }
+          &.party-republican     { background-color: #d8171e; }
+          &.party-unaffiliated   { background-color: #333; }
+          &.party-unknown        { background-color: #aaa; }
+          &.party-write-in       { background-color: #0ff; }
 
           transition: all 0.33s ease-in-out;
 
           &.ng-enter, &.ng-leave.ng-leave-active { opacity: 0; transform: scale(0); }
           &.ng-leave, &.ng-enter.ng-enter-active { opacity: 1; transform: scale(1); }
+        }
+      }
+    }
+
+    .indicator {
+      .marker {
+        &.party-constitutional { background-color: #f0f; }
+        &.party-democrat       { background-color: #0f2446; }
+        &.party-green          { background-color: #0f0; }
+        &.party-independent    { background-color: #fff; }
+        &.party-libertarian    { background: linear-gradient(#f00 0%, #00f 50%, #f00 100%); }
+        &.party-none           { background-color: #000; }
+        &.party-other          { background-color: #ff0; }
+        &.party-republican     { background-color: #d8171e; }
+        &.party-unaffiliated   { background-color: #333; }
+        &.party-unknown        { background-color: #aaa; }
+        &.party-write-in       { background-color: #0ff; }
+
+        &:hover {
+          border: solid 1px #ff0;
+          margin: -1px;
         }
       }
     }

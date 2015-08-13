@@ -9,14 +9,14 @@
     <div ng-click="gotoDraft()"
          class="draft">Set Draft</div>
   </div>
+
   <div class="stable-wrapper">
     <div class="candidate-wrapper">
       <div ng-style="{'left': candidateWrapperLeft + 'px'}"
            class="candidates">
         <div ng-repeat="candidate in league.stable track by candidate.id"
-             class="candidate">
-          <img ng-if="candidate.image"
-               src="/assets/images/{{candidate.image}}">
+             ng-class="'candidate party-' + candidate.party.toLowerCase()">
+          <img src="/assets/images/{{candidate.image || '_who.jpg'}}">
           <div class="detail">
             <span class="name">{{candidate.name.display}}</span>
             <span class="party">{{candidate.party}}</span>
@@ -37,5 +37,11 @@
       <div ng-click="sortBy('party')"
            class="party fa fa-users"></div>
     </div>
+  </div>
+
+  <div class="indicator">
+    <div ng-repeat="candidate in league.stable track by candidate.id"
+         ng-class="'marker party-' + candidate.party.toLowerCase()"
+         title="{{::candidate.party}}: {{::candidate.name.display}}"></div>
   </div>
 </div>
