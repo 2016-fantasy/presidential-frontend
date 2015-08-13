@@ -35,6 +35,8 @@ export default () => {
         else if (by === 'party') {
           $scope.league.stable = _.sortBy(stable, candidate => candidate.party);
         }
+
+        setOffset(0);
       };
 
       let offset = 0;
@@ -42,10 +44,13 @@ export default () => {
       $scope.scroll = $event => {
         const {deltaY} = $event;
 
-        offset += deltaY > 0 ? 50 : -50;
-
-        $scope.candidateWrapperLeft = offset;
+        setOffset(offset + deltaY > 0 ? 50 : -50);
       };
+
+      function setOffset(o) {
+        offset = o;
+        $scope.candidateWrapperLeft = offset;
+      }
     }]
   };
 };
