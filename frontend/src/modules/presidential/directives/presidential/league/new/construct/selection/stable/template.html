@@ -9,22 +9,33 @@
     <div ng-click="gotoDraft()"
          class="draft">Set Draft</div>
   </div>
-  <div ng-style="{'left': candidateWrapperLeft + 'px'}"
-       class="candidate-wrapper">
-    <div class="candidates">
-      <div ng-repeat="candidate in league.stable"
-           class="candidate">
-        <img ng-if="candidate.image"
-             src="/assets/images/{{candidate.image}}">
-        <div class="detail">
-          <span class="name">{{candidate.name.display}}</span>
-          <span class="party">{{candidate.party}}</span>
-          <span class="total-contributions">{{candidate.totalContributions}}</span>
-        </div>
-        <div ng-click="select(candidate)"
-             class="hover-detector">
+  <div class="stable-wrapper">
+    <div class="candidate-wrapper">
+      <div ng-style="{'left': candidateWrapperLeft + 'px'}"
+           class="candidates">
+        <div ng-repeat="candidate in league.stable track by candidate.id"
+             class="candidate">
+          <img ng-if="candidate.image"
+               src="/assets/images/{{candidate.image}}">
+          <div class="detail">
+            <span class="name">{{candidate.name.display}}</span>
+            <span class="party">{{candidate.party}}</span>
+            <span class="total-contributions">{{candidate.totalContributions}}</span>
+          </div>
+          <div ng-click="select(candidate)"
+               class="hover-detector">
+          </div>
         </div>
       </div>
+    </div>
+
+    <div ng-if="league.stable.length > 1"
+         class="sort-by">
+      <div ng-click="sortBy('totalContributions')"
+           class="total-contributions"
+           title="Sort By Total Contributions">$</div>
+      <div ng-click="sortBy('party')"
+           class="party fa fa-users"></div>
     </div>
   </div>
 </div>

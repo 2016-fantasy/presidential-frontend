@@ -134,7 +134,7 @@ export default () => {
             show = {},
             hide = {};
 
-      _.extend($scope, {candidates, show, hide});
+      $timeout(() => _.extend($scope, {candidates, show, hide}), 0);
 
       $scope.hover = ({fecId}) => show[fecId] = true;
       $scope.unhover = ({fecId}) => delete show[fecId];
