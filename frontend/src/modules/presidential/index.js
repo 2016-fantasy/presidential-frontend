@@ -6,10 +6,11 @@ import _ from 'lodash';
 
 import dataStore from '../dataStore';
 import devbox from '../devbox';
+import state from '../state';
 import uiComponents from '../ui-components';
 
 export default {
-  'presidential':  angular.module('presidential', ['ngRoute', 'ngAnimate', 'dataStore', 'devbox', 'uiComponents'])
+  'presidential':  angular.module('presidential', ['ngRoute', 'ngAnimate', 'dataStore', 'devbox', 'state', 'uiComponents'])
     .directive('presidential',  require('./directives/presidential/directive'))
       .directive('candidates', require('./directives/presidential/candidates/directive'))
 

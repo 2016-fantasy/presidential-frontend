@@ -5,7 +5,8 @@ export default () => {
     restrict: 'E',
     template: require('./template.html'),
     scope: {
-      'league': '='
+      'league': '=',
+      'setState': '@'
     },
     controller: ['$scope', $scope => {
       $scope.select = candidate => {
@@ -17,7 +18,7 @@ export default () => {
       };
 
       $scope.gotoDraft = () => {
-        alert('draft');
+        $scope.$parent.setState('set-draft');
       };
 
       $scope.getStableLogSize = () => {

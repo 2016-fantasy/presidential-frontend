@@ -1,15 +1,15 @@
 #!/bin/bash
 
-if [ `git rev-parse --abbrev-ref HEAD` != "develop" ]; then
-  echo "Not on develop"
-  exit 1
-fi
+# if [ `git rev-parse --abbrev-ref HEAD` != "develop" ]; then
+#   echo "Not on develop"
+#   exit 1
+# fi
 
-test -z "$(git status --porcelain)"
-if [ $? != 0 ]; then
-  echo "Repo not clean"
-  exit 1
-fi
+# test -z "$(git status --porcelain)"
+# if [ $? != 0 ]; then
+#   echo "Repo not clean"
+#   exit 1
+# fi
 
 gulpur build \
   && REV=`git rev-parse HEAD` \

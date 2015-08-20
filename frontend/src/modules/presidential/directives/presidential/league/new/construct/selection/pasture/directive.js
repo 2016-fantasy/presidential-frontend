@@ -145,6 +145,8 @@ export default () => {
         hide[fecId] = true;
         $scope.league.stable.unshift(candidate);
 
+        $scope.setState('stable');
+
         $scope.setMaskPosition();
       };
 
