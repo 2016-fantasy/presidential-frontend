@@ -30,9 +30,16 @@ selection {
   &.state-candidate-tier {}
   &.state-stable {}
   &.state-set-draft {
+    stable {
+      max-height: 100%;
+      flex: 1 1 auto;
+    }
+
     pasture {
-      height: 0%;
+      max-height: 0;
+      height: 0;
+      flex: 0 0 auto;
+      overflow: hidden;
     }
   }
-
 }
