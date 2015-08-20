@@ -48,15 +48,11 @@ export default () => {
         setLocation(location);
       };
 
-      $scope.scroll = $event => {
-        const {deltaY, isTouch} = $event,
-              {clientHeight} = candidates,
-              // location = (offset + deltaY) / clientHeight;
-              location = (offset + (deltaY > 0 ? 50 : -50)) / clientHeight;
+      $scope.scroll = (position, velocity) => {
+        const {y} = position,
+              {clientHeight} = candidates;
 
-        $scope.isTouch = isTouch;
-
-        setLocation(location);
+        setLocation(y / clientHeight);
       };
 
       let location = 0,
