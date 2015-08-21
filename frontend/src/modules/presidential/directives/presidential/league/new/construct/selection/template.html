@@ -1,3 +1,4 @@
 <set-draft ng-if="currentState === 'set-draft'"></set-draft>
 <stable ng-if="league.stable.length > 0" league="league"></stable>
-<pasture></pasture>
+<!-- states should list what is visible, not views cherry-picking checks for state -->
+<pasture ng-if="currentState === 'candidate-tier' || currentState === 'stable'"></pasture>
