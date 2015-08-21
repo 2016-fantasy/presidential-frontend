@@ -6,6 +6,18 @@ selection {
 
   height: 100%;
 
+  set-draft {
+    flex: 0.0001 1 auto;
+    max-height: 0;
+
+    overflow: hidden;
+
+    transition: all 0.25s ease-in-out;
+
+    &.ng-enter, &.ng-leave.ng-leave-active {flex: 0.1 1 auto;}
+    &.ng-leave, &.ng-enter.ng-enter-active {flex: 1 1 auto;}
+  }
+
   stable {
     flex: 0 1 auto;
 
@@ -30,6 +42,12 @@ selection {
   &.state-candidate-tier {}
   &.state-stable {}
   &.state-set-draft {
+    set-draft {
+      flex: 1 1 auto;
+
+      max-height: 100%;
+    }
+
     stable {
       max-height: 100%;
       flex: 1 1 auto;

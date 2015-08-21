@@ -17,8 +17,9 @@ export default () => {
         if (index >= 0) stable.splice(index, 1);
       };
 
-      $scope.gotoDraft = () => {
-        $scope.$parent.setState('set-draft');
+      $scope.toggleDraft = () => {
+        if ($scope.$parent.currentState === 'set-draft') $scope.$parent.setState('stable');
+        else $scope.$parent.setState('set-draft');
       };
 
       $scope.getStableLogSize = () => {

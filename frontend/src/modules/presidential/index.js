@@ -15,19 +15,20 @@ export default {
       .directive('candidates', require('./directives/presidential/candidates/directive'))
 
       // These names are a bit nuanced and not well documented...
-      .directive('league',       require('./directives/presidential/league/directive'))
-      .directive('newLeague',    require('./directives/presidential/league/new/directive'))
-        .directive('construct',  require('./directives/presidential/league/new/construct/directive'))
-          .directive('selection',require('./directives/presidential/league/new/construct/selection/directive'))
-            .directive('pasture',require('./directives/presidential/league/new/construct/selection/pasture/directive'))
-            .directive('stable', require('./directives/presidential/league/new/construct/selection/stable/directive'))
-          .directive('draft',    require('./directives/presidential/league/new/construct/draft/directive'))
-        .directive('sidebar',    require('./directives/presidential/league/new/sidebar/directive'))
-          .directive('players',  require('./directives/presidential/league/new/sidebar/players/directive'))
-            .directive('invite', require('./directives/presidential/league/new/sidebar/players/invite/directive'))
-      .directive('findLeague',   require('./directives/presidential/league/find/directive'))
+      .directive('league',         require('./directives/presidential/league/directive'))
+      .directive('newLeague',      require('./directives/presidential/league/new/directive'))
+        .directive('construct',    require('./directives/presidential/league/new/construct/directive'))
+          .directive('selection',  require('./directives/presidential/league/new/construct/selection/directive'))
+            .directive('pasture',  require('./directives/presidential/league/new/construct/selection/pasture/directive'))
+            .directive('setDraft', require('./directives/presidential/league/new/construct/selection/setDraft/directive'))
+            .directive('stable',   require('./directives/presidential/league/new/construct/selection/stable/directive'))
+          .directive('draft',      require('./directives/presidential/league/new/construct/draft/directive'))
+        .directive('sidebar',      require('./directives/presidential/league/new/sidebar/directive'))
+          .directive('players',    require('./directives/presidential/league/new/sidebar/players/directive'))
+            .directive('invite',   require('./directives/presidential/league/new/sidebar/players/invite/directive'))
+      .directive('findLeague',     require('./directives/presidential/league/find/directive'))
 
-      .directive('welcome',      require('./directives/presidential/welcome/directive'))
+      .directive('welcome',        require('./directives/presidential/welcome/directive'))
 
     .config([
       '$routeProvider', '$locationProvider', /*'$mountProvider',*/

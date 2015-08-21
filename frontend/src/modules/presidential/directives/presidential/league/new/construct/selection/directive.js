@@ -27,6 +27,26 @@ export default () => {
       };
 
       $scope.setState(states[0]);
+
+      $scope.setState = state => {
+        const {currentState} = $scope;
+
+        if (currentState) element.removeClass(`state-${currentState}`);
+        element.addClass(`state-${state}`);
+
+        $scope.currentState = state;
+      };
+
+      $scope.isState = state => $scope.currentState === state;
     }
   };
 };
+
+function state(s) {
+  const states = s.slice(0), // Clone the array because we don't trust anyone not to change it (though we may want to support that feature)
+        map = _.transform(states, (result, state, index) => (result[state] = index));
+
+  return state => {
+
+  };
+}
