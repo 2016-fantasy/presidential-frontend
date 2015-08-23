@@ -6,7 +6,6 @@ export default () => {
     template: require('./template.html'),
     scope: {
       'league': '=',
-      'setState': '@'
     },
     controller: ['$scope', $scope => {
       $scope.select = candidate => {
@@ -15,6 +14,7 @@ export default () => {
               index = stable.indexOf(candidate);
 
         if (index >= 0) stable.splice(index, 1);
+        if (stable.length  === 0) $scope.$parent.setState('candidate-tier');
       };
 
       $scope.toggleDraft = () => {

@@ -5,9 +5,11 @@
       <div class="candidates"
            ng-style="{'top': candidatesTop + 'px'}">
         <div ng-repeat="candidate in candidates"
-             ng-if="!hide[candidate.fecId]"
-             class="candidate">
-          <img src="/assets/images/{{candidate.image || '_who.jpg'}}">
+             ng-class="{'candidate': true, 'tapped': tapped[candidate.fecId]}">
+          <img delayed-src="'/assets/images/' + (candidate.image || '_who.jpg')">
+          <div ng-if="tapped[candidate.fecId]" class="tapped">
+            <span>TAPPED</span>
+          </div>
           <div ng-if="show[candidate.fecId]" class="overlay">
             <span>{{candidate.name.display}}</span>
           </div>

@@ -4,7 +4,6 @@ export default () => {
   return {
     restrict: 'A',
     link: ($scope, element, attributes) => {
-      console.log({$scope, element, attributes});
       const expression = attributes['scrollControl'];
       control(element, {}, (...arg) => $scope.$evalAsync(expression, ...arg));
     },

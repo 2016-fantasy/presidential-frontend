@@ -20,7 +20,6 @@ export default () => {
       wrapper.addEventListener('scroll', resize);
 
       $scope.$on('$destroy', () => {
-        console.log('Destroying');
         wrapper.removeEventListener('scroll', resize);
         wrapper.removeEventListener('resize', resize);
         scrollCapture.removeEventListener('resize', resize);
@@ -128,20 +127,26 @@ export default () => {
       // const candidates = _.sortBy(_.filter(dataStore.getCandidates(), ({image}) => image !== undefined), 'totalContributions').reverse(),
       const candidates = _.sortBy(dataStore.getCandidates(), ({totalContributions}) => totalContributions || 0).reverse(),
             show = {},
-            hide = {};
+            tapped = {};
 
-      $timeout(() => _.extend($scope, {candidates, show, hide}), 0);
+      $timeout(() => _.extend($scope, {candidates, show, tapped}), 0);
 
       $scope.hover = ({fecId}) => show[fecId] = true;
       $scope.unhover = ({fecId}) => delete show[fecId];
 
       $scope.select = candidate => {
-        const {fecId} = candidate;
+        const {fecId} = candidate,
+              isTapped = tapped[fecId];
 
-        hide[fecId] = true;
-        $scope.league.stable.unshift(candidate);
+        if (!isTapped) {
+          $scope.league.stable.unshift(candidate);
+          $scope.setState('stable');
+        }
+        else {
 
-        $scope.setState('stable');
+        }
+
+        tapped[fecId] = !isTapped;
 
         $scope.setMaskPosition();
       };
