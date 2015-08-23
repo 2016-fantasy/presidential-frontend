@@ -143,7 +143,12 @@ export default () => {
           $scope.setState('stable');
         }
         else {
+          const {league: {stable}} = $scope,
+                index = stable.indexOf(candidate);
 
+          if (index >= 0) stable.splice(index, 1);
+
+          if (stable.length === 0) $scope.setState('candidate-tier');
         }
 
         tapped[fecId] = !isTapped;
