@@ -13,7 +13,6 @@ export default () => {
 
       $scope.setMaskPosition = setMaskPosition;
 
-      //these should be removed when the directive is destroyed...
       window.addEventListener('resize', resize);
       scrollCapture.addEventListener('resize', resize);
       wrapper.addEventListener('resize', resize);
