@@ -79,15 +79,15 @@ export default () => {
 
       $timeout(() => _.extend($scope, {candidates, show, tapped}), 0);
 
-      $scope.hover = ({fecId}) => show[fecId] = true;
-      $scope.unhover = ({fecId}) => delete show[fecId];
+      $scope.hover = ({id}) => show[id] = true;
+      $scope.unhover = ({id}) => delete show[id];
 
       $scope.select = candidate => {
-        const {fecId} = candidate,
-              isTapped = tapped[fecId];
+        const {id} = candidate,
+              isTapped = tapped[id];
 
         if (!isTapped) {
-          $scope.show[fecId] = false;
+          $scope.show[id] = false;
           $scope.league.stable.unshift(candidate);
           $scope.setState('stable');
         }
@@ -100,7 +100,7 @@ export default () => {
           if (stable.length === 0) $scope.setState('candidate-tier');
         }
 
-        tapped[fecId] = !isTapped;
+        tapped[id] = !isTapped;
 
         $scope.setMaskPosition();
       };
