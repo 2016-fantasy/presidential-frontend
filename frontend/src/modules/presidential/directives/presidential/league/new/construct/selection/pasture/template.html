@@ -6,7 +6,8 @@
            ng-style="{'top': candidatesTop + 'px'}">
         <div ng-repeat="candidate in candidates"
              ng-class="{'candidate': true, 'tapped': tapped[candidate.fecId]}">
-          <img delayed-src="'/assets/images/' + (candidate.image || '_who.jpg')">
+          <!-- <img delayed-src="'/assets/images/' + (candidate.image || '_who.jpg')"> -->
+          <div class="sprite sprite-{{candidate.image.split('.')[0]}}"></div>
           <div ng-if="tapped[candidate.fecId]" class="tapped">
             <span>TAPPED</span>
           </div>

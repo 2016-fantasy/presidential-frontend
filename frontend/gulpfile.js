@@ -148,11 +148,13 @@ gulp.task('sprites',
       cssName: './sprites.css',
       cssTemplate:
         ({sprites, spritesheet}) => {
+          console.log({spritesheet});
           return _.map(sprites, sprite => {
-            const {name, offset_x, offset_y, width, height} = sprite,
-                  position = {x: 100 * offset_x / width, y: 100 * offset_y / height},
+            console.log({sprite});
+            const {name, x, y, offset_x, offset_y, width, height} = sprite,
+                  position = {x: -100 * x / spritesheet.width, y: -100 * (1 - y / spritesheet.height)},
                   size = {x: 100 * spritesheet.width / width, y: 100 * spritesheet.height / height};
-            return `.sprite-${name} { background-image: url('${spritesheet.image}'); background-position: ${position.x}% ${position.y}% ; background-size: ${size.x}% ${size.y}%; width: 100%; height: 100%; }`;
+            return `.sprite-${name} { background-image: url('${spritesheet.image}'); background-position: ${offset_x}px ${offset_y}px ; background-size: ${size.x}% ${size.y}%; }`;
           }).join('\n');
         },
       cssOpts: {cssSelector: ({name}) => `.sprite-${name}`}
