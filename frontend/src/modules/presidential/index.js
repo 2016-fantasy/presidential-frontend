@@ -1,6 +1,7 @@
 require('angular');
 require('angular-animate');
 require('angular-route');
+require('angular-touch');
 
 import _ from 'lodash';
 
@@ -10,7 +11,7 @@ import state from '../state';
 import uiComponents from '../ui-components';
 
 export default {
-  'presidential':  angular.module('presidential', ['ngRoute', 'ngAnimate', 'dataStore', 'devbox', 'state', 'uiComponents'])
+  'presidential':  angular.module('presidential', ['ngRoute', 'ngAnimate', 'ngTouch', 'dataStore', 'devbox', 'state', 'uiComponents'])
     .directive('presidential',  require('./directives/presidential/directive'))
       .directive('candidates', require('./directives/presidential/candidates/directive'))
 
