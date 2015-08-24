@@ -113,8 +113,6 @@ stable {
 
       height: 0em;
 
-      overflow: hidden;
-
       .candidate-wrapper {
         position: relative;
 
@@ -124,7 +122,10 @@ stable {
 
         margin-left: 0.5em;
 
-        // overflow: hidden;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        transform: rotateX(180deg);
 
         transition: all 0.25s ease-in-out;
 
@@ -143,6 +144,8 @@ stable {
           justify-content: center;
 
           flex: 0 0 auto;
+
+          transform: rotateX(180deg);
 
           .candidate {
             position: relative;

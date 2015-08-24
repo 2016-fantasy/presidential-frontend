@@ -1,9 +1,8 @@
-<div ng-class="{'scroll-capture': true, 'is-touch': isTouch}"
-     scroll-control="scroll(position, velocity)">
+<div ng-class="{'scroll-capture': true, 'is-touch': isTouch}">
   <div class="wrapper">
-    <div class="inner-wrapper">
-      <div class="candidates"
-           ng-style="{'top': candidatesTop + 'px'}">
+    <div class="inner-wrapper"
+         scroll-sync="syncMask($event)">
+      <div class="candidates">
         <div ng-repeat="candidate in candidates"
              ng-class="{'candidate': true, 'tapped': tapped[candidate.fecId]}">
           <img delayed-src="'/assets/images/' + (candidate.image || '_who.jpg')">

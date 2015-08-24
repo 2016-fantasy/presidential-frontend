@@ -5,4 +5,6 @@ export default {
     .directive('delayedSrc',          require('./directives/delayedSrc/directive'))
     .directive('scroll',          require('./directives/scroll/directive'))
     .directive('scrollControl',   require('./directives/scroll-control/directive'))
+    .directive('scrollSync',      require('./directives/scrollSync/directive'))
+    .directive('scrollSwap',      require('./directives/scrollSwap/directive'))
 };

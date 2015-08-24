@@ -8,6 +8,10 @@ export default () => {
       'league': '=',
     },
     controller: ['$scope', $scope => {
+      $scope.scroll = $event => {
+        console.log({$event});
+      };
+
       $scope.select = candidate => {
         //Should probably show a menu with some options
         const {stable} = $scope.league,

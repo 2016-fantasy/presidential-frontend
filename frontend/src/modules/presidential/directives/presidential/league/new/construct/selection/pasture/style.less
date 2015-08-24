@@ -100,7 +100,7 @@ pasture {
 
             background-color: rgba(0, 0, 0, 0.75);
 
-            // transition: all 0.25s ease-in-out;
+            // transition: all 0.25s linear;
 
             &.mask-top {
               border-bottom: solid 1px rgba(255, 255, 0, 0.6);
@@ -135,7 +135,8 @@ pasture {
         // height: 20em;
         flex: 1 1 auto;
 
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: auto;
 
         .candidates {
           position: relative;

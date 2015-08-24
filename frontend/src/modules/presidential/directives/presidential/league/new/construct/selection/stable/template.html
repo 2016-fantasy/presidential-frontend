@@ -1,5 +1,4 @@
 <div ng-if="league.stable.length > 0"
-     scroll="scroll($event)"
      ng-class="'wrapper stable-log-size-' + getStableLogSize()">
   <div class="header">
     <div class="words">
@@ -11,7 +10,9 @@
   </div>
 
   <div class="stable-wrapper">
-    <div class="candidate-wrapper">
+    <div class="candidate-wrapper"
+         scroll-sync
+         scroll-swap>
       <div ng-style="{'left': candidateWrapperLeft + 'px'}"
            class="candidates">
         <div ng-repeat="candidate in league.stable track by candidate.id"

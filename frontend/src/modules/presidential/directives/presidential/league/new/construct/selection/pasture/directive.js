@@ -30,55 +30,23 @@ export default () => {
         $scope.$apply(setMaskPosition);
       }
 
-      //this should also be called while dragging on the bar
       $scope.barClick = $event => {
-        // This should be changed to scroll the middle of the screen to the clicked point
-        // Currently it will scroll the top of the screen to the clicked point
         const {offsetY, target} = $event, // Is this (offsetY) cross browser?
               {clientHeight, offsetHeight, offsetTop} = target,
-              {scrollHeight} = wrapper;
+              {scrollHeight} = innerWrapper;
 
         const height = offsetY,
               location = height / clientHeight,
               top = location * scrollHeight;
 
-        wrapper.scrollTop = top;
-
-        setLocation(location);
+        innerWrapper.scrollTop = top;
       };
 
-      $scope.scroll = (position, velocity) => {
-        const {y} = position,
-              {clientHeight} = candidates;
-
-        setLocation(y / clientHeight);
-      };
-
-      let location = 0,
-          offset = 0;
-      function setLocation(value) {
-        const {clientHeight} = candidates;
-
-        location = clamp(0, value, 1);
-
-        setOffset(location * clientHeight);
-      }
-
-      function setOffset(value) {
-        const {clientHeight} = candidates;
-
-        offset = clamp(0, value, clientHeight);
-
-        setCandidatesPosition();
-        setMaskPosition();
-      }
-
-      function setCandidatesPosition() {
-        $scope.candidatesTop = -offset;
-      }
-
-      function setMaskPosition() {
-        const visible = wrapper.clientHeight / candidates.clientHeight;
+      $scope.syncMask = $event => {
+        const {target} = $event,
+              {clientHeight, scrollHeight, scrollTop} = target,
+              location = scrollTop / scrollHeight,
+              visible = clientHeight / scrollHeight;
 
         const top = Math.max(location, 0),
               bottom = Math.max(1 - top - visible, 0);
@@ -87,40 +55,20 @@ export default () => {
         $scope.topMaskTop = 0;
         $scope.bottomMaskHeight = bottom ;
         $scope.bottomMaskTop = (1 - bottom);
-      }
+      };
 
-      // function setMaskPosition(top) {
-      //   const {clientHeight, scrollHeight, scrollTop} = candidates;
+      function setMaskPosition() {
+        const {clientHeight, scrollHeight, scrollTop} = innerWrapper,
+              visible = clientHeight / scrollHeight,
+              location = scrollTop / scrollHeight;
 
-      //   const visibleProportion = Math.min(scrollHeight - scrollTop, clientHeight) / scrollHeight,
-      //         topProportion = scrollTop / scrollHeight,
-      //         bottomProportion = 1 - topProportion - visibleProportion;
+        const top = Math.max(location, 0),
+              bottom = Math.max(1 - top - visible, 0);
 
-      //   $scope.topMaskHeight = topProportion * 100;
-      //   $scope.topMaskTop = 0;
-      //   $scope.bottomMaskHeight = bottomProportion * 100;
-      //   $scope.bottomMaskTop = (1 - bottomProportion) * 100;
-
-
-      //   $scope.barHeight = 100 * (clientHeight / scrollHeight) + '%';
-      //   $scope.barTop = 100 * (scrollTop / scrollHeight) + '%';
-      // }
-
-      function setBarPosition() {
-        const {clientHeight, scrollHeight, scrollTop} = candidates;
-
-        const visibleProportion = Math.min(scrollHeight - scrollTop, clientHeight) / scrollHeight,
-              topProportion = scrollTop / scrollHeight,
-              bottomProportion = 1 - topProportion - visibleProportion;
-
-        $scope.topMaskHeight = topProportion * 100;
+        $scope.topMaskHeight = top ;
         $scope.topMaskTop = 0;
-        $scope.bottomMaskHeight = bottomProportion * 100;
-        $scope.bottomMaskTop = (1 - bottomProportion) * 100;
-
-
-        $scope.barHeight = 100 * (clientHeight / scrollHeight) + '%';
-        $scope.barTop = 100 * (scrollTop / scrollHeight) + '%';
+        $scope.bottomMaskHeight = bottom ;
+        $scope.bottomMaskTop = (1 - bottom);
       }
     },
     controller: ['$scope', '$timeout', 'dataStore', ($scope, $timeout, dataStore) => {
