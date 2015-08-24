@@ -169,6 +169,8 @@ pasture {
             max-height: 15em;
             min-height: 5em;
 
+            color: #fff;
+
             cursor: pointer;
 
             transition: all 0.25s ease-in-out;
@@ -178,14 +180,16 @@ pasture {
 
             overflow: hidden;
 
+            &.party-democrat { color: #00f; }
+            &.party-republican { color: #f00; }
+
             &.ng-enter, &.ng-leave.ng-leave-active { opacity: 0; transform: scale(0); }
             &.ng-leave, &.ng-enter.ng-enter-active { opacity: 1; transform: scale(1); }
 
             &.tapped {
               opacity: 0.8;
-              img {
-                width: 100%;
 
+              img {
                 transform: scale(3);
               }
             }
@@ -241,11 +245,9 @@ pasture {
               font-size: 1.1em;
               font-weight: bold;
 
-              color: #fff;
-
               text-shadow: 0px 0px 10px #000;
 
-              transition: all 0.25s ease-out;
+              transition: all 0.5s ease-out;
 
               &.ng-enter, &.ng-leave.ng-leave-active {
                 span {
@@ -255,7 +257,6 @@ pasture {
                 }
               }
               &.ng-leave, &.ng-enter.ng-enter-active {
-                color: #0f0;
                 span {
                   opacity: 1;
 
@@ -264,7 +265,7 @@ pasture {
               }
 
               span {
-                color: #f00;
+                // color: #f00;
 
                 word-wrap: break-word;
                 text-align: center;
@@ -272,7 +273,7 @@ pasture {
 
                 transform: rotate(-45deg);
 
-                transition: all 0.25s ease-out;
+                transition: all 0.5s ease-out;
               }
             }
 

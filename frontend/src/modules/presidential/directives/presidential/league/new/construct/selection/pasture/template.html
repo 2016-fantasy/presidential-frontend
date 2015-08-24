@@ -4,7 +4,8 @@
          scroll-sync="syncMask($event)">
       <div class="candidates">
         <div ng-repeat="candidate in candidates track by $index"
-             ng-class="{'candidate': true, 'tapped': tapped[candidate.fecId]}"
+             ng-class="'candidate party-' + candidate.party.toLowerCase() + (tapped[candidate.fecId] ? ' tapped' : '')"
+
              ng-mouseenter="hover(candidate)"
              ng-mouseleave="unhover(candidate)"
              ng-click="select(candidate)">

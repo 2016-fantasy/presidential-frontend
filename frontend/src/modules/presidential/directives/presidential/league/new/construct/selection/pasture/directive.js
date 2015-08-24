@@ -87,6 +87,7 @@ export default () => {
               isTapped = tapped[fecId];
 
         if (!isTapped) {
+          $scope.show[fecId] = false;
           $scope.league.stable.unshift(candidate);
           $scope.setState('stable');
         }
