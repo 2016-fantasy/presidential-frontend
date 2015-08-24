@@ -87,7 +87,7 @@ export default () => {
               isTapped = tapped[id];
 
         if (!isTapped) {
-          $scope.show[id] = false;
+          show[id] = false;
           $timeout(() => {
 
             $scope.league.stable.unshift(candidate);
