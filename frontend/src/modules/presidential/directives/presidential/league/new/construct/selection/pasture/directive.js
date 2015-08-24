@@ -72,7 +72,6 @@ export default () => {
       }
     },
     controller: ['$scope', '$timeout', 'dataStore', ($scope, $timeout, dataStore) => {
-      // const candidates = _.sortBy(_.filter(dataStore.getCandidates(), ({image}) => image !== undefined), 'totalContributions').reverse(),
       const candidates = _.sortBy(dataStore.getCandidates(), ({totalContributions}) => totalContributions || 0).reverse(),
             show = {},
             tapped = {};
