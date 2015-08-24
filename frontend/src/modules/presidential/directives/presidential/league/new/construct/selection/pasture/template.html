@@ -5,7 +5,6 @@
       <div class="candidates">
         <div ng-repeat="candidate in candidates track by $index"
              ng-class="'candidate party-' + candidate.party.toLowerCase() + (tapped[candidate.id] ? ' tapped' : '')"
-
              ng-mouseenter="hover(candidate)"
              ng-mouseleave="unhover(candidate)"
              ng-click="select(candidate)">
