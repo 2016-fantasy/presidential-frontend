@@ -66,10 +66,28 @@ selection {
 
     stable {
       max-height: 10em;
+
+      .wrapper {
+        .candidate-wrapper {
+          .candidates {
+            .candidate {
+              width: 3em;
+
+              .detail {
+                display: none;
+              }
+            }
+          }
+        }
+      }
     }
 
     pasture {
       max-height: 0%;
+
+      .candidate {
+        visible: false;
+      }
     }
   }
 }
