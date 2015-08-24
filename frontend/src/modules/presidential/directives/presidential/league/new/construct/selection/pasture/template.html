@@ -3,19 +3,17 @@
     <div class="inner-wrapper"
          scroll-sync="syncMask($event)">
       <div class="candidates">
-        <div ng-repeat="candidate in candidates"
-             ng-class="{'candidate': true, 'tapped': tapped[candidate.fecId]}">
+        <div ng-repeat="candidate in candidates track by $index"
+             ng-class="{'candidate': true, 'tapped': tapped[candidate.fecId]}"
+             ng-mouseenter="hover(candidate)"
+             ng-mouseleave="unhover(candidate)"
+             ng-click="select(candidate)">
           <img delayed-src="'/assets/images/' + (candidate.image || '_who.jpg')">
           <div ng-if="tapped[candidate.fecId]" class="tapped">
             <span>TAPPED</span>
           </div>
           <div ng-if="show[candidate.fecId]" class="overlay">
-            <span>{{candidate.name.display}}</span>
-          </div>
-          <div ng-mouseenter="hover(candidate)"
-               ng-mouseout="unhover(candidate)"
-               ng-click="select(candidate)"
-               class="hover-detector">
+            <span>{{::candidate.name.display}}</span>
           </div>
         </div>
       </div>
