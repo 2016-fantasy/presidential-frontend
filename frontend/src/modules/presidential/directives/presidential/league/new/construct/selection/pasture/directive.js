@@ -88,8 +88,11 @@ export default () => {
 
         if (!isTapped) {
           $scope.show[id] = false;
-          $scope.league.stable.unshift(candidate);
-          $scope.setState('stable');
+          $timeout(() => {
+
+            $scope.league.stable.unshift(candidate);
+            $scope.setState('stable');
+          }, 0);
         }
         else {
           const {league: {stable}} = $scope,
@@ -101,8 +104,6 @@ export default () => {
         }
 
         tapped[id] = !isTapped;
-
-        $scope.setMaskPosition();
       };
 
       // Cheating, but it works for now
