@@ -32,8 +32,8 @@ export default {
       .directive('welcome',        require('./directives/presidential/welcome/directive'))
 
     .config([
-      '$routeProvider', '$locationProvider', /*'$mountProvider',*/
-      ($routeProvider, $locationProvider/*, $mountProvider*/) => {
+      '$routeProvider', '$locationProvider', '$compileProvider', /*'$mountProvider',*/
+      ($routeProvider, $locationProvider, $compileProvider/*, $mountProvider*/) => {
 
       // All of the commented code here is from another project.
       // It might be useful here so I'm going to leave it for now
@@ -54,6 +54,7 @@ export default {
 
       // $mountProvider.mount('/', routes);
       // $mountProvider.$get();
+      $compileProvider.debugInfoEnabled(false);
 
       const routerController = [
         '$scope', '$routeParams',
