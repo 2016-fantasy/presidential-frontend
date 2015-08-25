@@ -84,6 +84,8 @@ export default () => {
         const {id} = candidate,
               isTapped = tapped[id];
 
+        tapped[id] = !isTapped;
+
         if (!isTapped) {
           show[id] = false;
           $timeout(() => {
@@ -100,8 +102,6 @@ export default () => {
 
           if (stable.length === 0) $scope.setState('candidate-tier');
         }
-
-        tapped[id] = !isTapped;
       };
 
       // Cheating, but it works for now
