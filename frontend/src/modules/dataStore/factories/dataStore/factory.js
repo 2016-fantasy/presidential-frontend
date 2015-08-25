@@ -11,6 +11,8 @@ module.exports = () => ({
   getCandidates,
   getParties,
 
+  getDraft: ((draft) => () => draft)(getDraft()), // wut wut
+
   getLeagues,
   getLeagueById,
 
@@ -19,6 +21,23 @@ module.exports = () => ({
 
 function getCandidates() { return candidates; } // This is a writable copy! Careful
 function getParties() { return parties; }
+
+function getDraft() {
+  const data = {},
+        listeners = {};
+
+  return {
+    set: (name, value) => {
+      console.log('set', {name, value, listeners, data});
+      data[name] = value;
+      (listeners[name] || []).forEach(listener => listener(value, name));
+    },
+    when: (name, callback) => {
+      (listeners[name] = listeners[name] || []).push(callback);
+      callback(data[name], name);
+    }
+  };
+}
 
 // Just an in-memory stub
 const leagues = {

@@ -4,7 +4,9 @@ export default () => {
   return {
     restrict: 'E',
     template: require('./template.html'),
-    controller: ['$scope', '$interval', ($scope, $interval) => {
+    controller: ['$scope', '$interval', 'dataStore', ($scope, $interval, dataStore) => {
+      const draft = dataStore.getDraft();
+
       $scope.start = dateAdd(new Date(), 'minute', 5);
 
       setCountdown();
@@ -16,6 +18,7 @@ export default () => {
               left = start - now;
 
         $scope.countdown = timeToString(left);
+        draft.set('countdown', $scope.countdown);
       }
 
       function setStart(start) {

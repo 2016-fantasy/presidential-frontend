@@ -7,7 +7,15 @@ export default () => {
     scope: {
       'league': '=',
     },
-    controller: ['$scope', $scope => {
+    controller: ['$scope', 'dataStore', ($scope, dataStore) => {
+      const draft = dataStore.getDraft();
+
+      draft.when('countdown', countdown => $scope.draftText = format(countdown) || 'Set Draft');
+
+      function format(countdown) { console.log('format', {countdown}); return countdown; }
+
+
+
       $scope.scroll = $event => {
         console.log({$event});
       };
