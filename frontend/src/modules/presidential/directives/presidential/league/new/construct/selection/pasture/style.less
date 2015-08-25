@@ -172,26 +172,57 @@ pasture {
 
             overflow: hidden;
 
-            &.party-democrat { color: #00f; }
-            &.party-republican { color: #f00; }
+            user-select: none;
+
+            &.party-democrat {
+              text-shadow: 0px 0px 1em #fff;
+
+              // background-color: #00f;
+              // box-shadow: inset 0px 0px 3em #33f;
+
+              .image-wrapper {
+                box-shadow: 0px 0px 5em #33f;
+              }
+            }
+
+            &.party-republican {
+              text-shadow: 0px 0px 2em #fff;
+
+              // background-color: #f00;
+              // box-shadow: inset 0px 0px 1em #f33;
+
+              .image-wrapper {
+                box-shadow: 0px 0px 2em #f33;
+              }
+            }
 
             &.ng-enter, &.ng-leave.ng-leave-active { opacity: 0; transform: scale(0); }
             &.ng-leave, &.ng-enter.ng-enter-active { opacity: 1; transform: scale(1); }
 
-            &.tapped {
-              opacity: 0.8;
+            &.is-tapped {
 
-              img {
-                transform: scale(3);
+              .image-wrapper {
+                margin: 0.5em;
+
+                img {
+                  transform: scale(2.5);
+                  opacity: 0.8;
+                }
               }
             }
 
-            img {
-              display: block;
-
-              width: 100%;
+            .image-wrapper {
+              overflow: hidden;
 
               transition: all 0.5s ease-out;
+
+              img {
+                display: block;
+
+                width: 100%;
+
+                transition: all 0.5s ease-out;
+              }
             }
 
             .overlay {
@@ -212,7 +243,7 @@ pasture {
 
               color: #fff;
 
-              text-shadow: 0px 0px 10px #000;
+              // text-shadow: 0px 0px 10px #000;
 
               span {
                 word-wrap: break-word;
@@ -235,9 +266,10 @@ pasture {
               align-items: center;
 
               font-size: 1.1em;
-              font-weight: bold;
+              font-weight: bolder;
 
-              text-shadow: 0px 0px 10px #000;
+              color: #fff;
+              text-shadow: 0px 0px 0.5em #000;
 
               transition: all 0.5s ease-out;
 
@@ -264,6 +296,8 @@ pasture {
                 transform: rotate(-45deg);
 
                 transition: all 0.5s ease-out;
+
+                user-select: none;
               }
             }
 

@@ -4,11 +4,13 @@
          scroll-sync="syncMask($event)">
       <div class="candidates">
         <div ng-repeat="candidate in candidates track by $index"
-             ng-class="'candidate party-' + candidate.party.toLowerCase() + (tapped[candidate.id] ? ' tapped' : '')"
+             ng-class="'candidate party-' + candidate.party.toLowerCase() + (tapped[candidate.id] ? ' is-tapped' : '')"
              ng-mouseenter="hover(candidate)"
              ng-mouseleave="unhover(candidate)"
-             ng-click="select(candidate)">
-          <img delayed-src="'/assets/images/' + (candidate.image || '_who.jpg')">
+             ng-click="select(candidate); $event.preventDefault();">
+          <div class="image-wrapper">
+            <img delayed-src="'/assets/images/' + (candidate.image || '_who.jpg')">
+          </div>
           <div ng-if="tapped[candidate.id]" class="tapped">
             <span>TAPPED</span>
           </div>
