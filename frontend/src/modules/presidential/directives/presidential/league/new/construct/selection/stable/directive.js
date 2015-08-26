@@ -10,9 +10,9 @@ export default () => {
     controller: ['$scope', 'dataStore', ($scope, dataStore) => {
       const draft = dataStore.getDraft();
 
-      draft.when('countdown', countdown => $scope.draftText = format(countdown) || 'Set Draft');
+      draft.when('countdownString', countdownString => $scope.draftText = format(countdownString) || 'Set Draft');
 
-      function format(countdown) { console.log('format', {countdown}); return countdown; }
+      function format(countdownString) { return countdownString; }
 
 
 

@@ -3,7 +3,7 @@ import _ from 'lodash';
 const {candidates} = require('../../../../../../../data/datasets/processed/candidates.json');
 const {parties} = require('../../../../../../../data/datasets/processed/parties.json');
 
-module.exports = () => ({
+module.exports = ['$interval', '$timeout', ($interval, $timeout) => ({
   // getDB,
   // getWorkouts,
   // getExercises,
@@ -11,32 +11,127 @@ module.exports = () => ({
   getCandidates,
   getParties,
 
-  getDraft: ((draft) => () => draft)(getDraft()), // wut wut
+  getDraft: ((draft) => () => draft)(getDraft({$interval, $timeout})), // wut wut
 
   getLeagues,
   getLeagueById,
 
   createLeague
-});
+})];
 
 function getCandidates() { return candidates; } // This is a writable copy! Careful
 function getParties() { return parties; }
 
-function getDraft() {
-  const data = {},
-        listeners = {};
+function getDraft({$interval, $timeout}) {
+  return new Draft({$interval, $timeout});
+}
 
-  return {
-    set: (name, value) => {
-      console.log('set', {name, value, listeners, data});
-      data[name] = value;
-      (listeners[name] || []).forEach(listener => listener(value, name));
-    },
-    when: (name, callback) => {
-      (listeners[name] = listeners[name] || []).push(callback);
-      callback(data[name], name);
+class Draft {
+  constructor({$interval, $timeout, data, listeners} = {}) { // Will allow this level of customization for now
+    data = data || {};
+    listeners = listeners || {};
+
+    _.extend(this, {$interval, $timeout, data, listeners});
+  }
+
+  set(name, value) {
+    const {data, listeners} = this,
+          {startTime} = this.bound();
+
+    data[name] = value;
+
+    switch(name) {
+      case 'startTime': startTime(value); break;
     }
-  };
+
+    (listeners[name] || []).forEach(listener => listener(value, name));
+  }
+
+  get(name) {
+    const {data} = this;
+
+    return data[name];
+  }
+
+  when(name, callback) {
+    const {data, listeners} = this;
+
+    (listeners[name] = listeners[name] || []).push(callback);
+    callback(data[name], name);
+  }
+
+  startTime(value) {
+    let {$interval, $timeout, interval} = this,
+        {setCountdown} = this.bound();
+
+    if (interval) $interval.cancel(interval);
+
+    interval = $interval(setCountdown, 1000);
+    $timeout(setCountdown, 0);
+
+    _.extend(this, {interval});
+  }
+
+  get countdown() { return this.data['countdown']; }
+
+  setCountdown(value) {
+    const {data} = this,
+          {set} = this.bound();
+
+    const now = new Date().getTime(),
+          {startTime} = data,
+          left = startTime - now;
+
+    set('countdownString', timeToString(left));
+    set('countdown', parseTime(left));
+  }
+
+  bound() {
+    return {
+      set: this.set.bind(this),
+      setCountdown: this.setCountdown.bind(this),
+      startTime: this.startTime.bind(this)
+    };
+  }
+}
+
+function timeToString(time) {
+  let secondsTotal = time / 1000,
+      [minutesTotal, seconds] = [secondsTotal / 60,           Math.floor(secondsTotal % 60)],
+        [hoursTotal, minutes] = [minutesTotal / 60,           Math.floor(minutesTotal % 60)],
+         [daysTotal,   hours] = [hoursTotal / 24,             Math.floor(hoursTotal % 24)],
+             [years,    days] = [Math.floor(daysTotal / 365), Math.floor(daysTotal % 365)]; // won't handle leap years
+
+  return _.compact(
+          [
+              years > 1 ? `${years} years` :      years > 0 ? `${years} year` : undefined,
+               days > 1 ? `${days} days`   :       days > 0 ? `${days} day` : undefined,
+              hours > 1 ? `${hours} hours` :      hours > 0 ? `${hours} hour` : undefined,
+            minutes > 1 ? `${minutes} minutes` :minutes > 0 ? `${minutes} minute` : undefined,
+            seconds > 1 ? `${seconds} seconds` :seconds > 0 ? `${seconds} second` : undefined
+          ]
+         ).join(' ');
+}
+
+function parseTime(time) {
+  const secondsTotal = time / 1000,
+      [minutesTotal, seconds] = [secondsTotal / 60, Math.floor(secondsTotal % 60)],
+      [hoursTotal, minutes] = [minutesTotal / 60, Math.floor(minutesTotal % 60)],
+      [daysTotal, hours] = [hoursTotal / 24, Math.floor(hoursTotal % 24)],
+      [years, days] = [Math.floor(daysTotal / 365), Math.floor(daysTotal % 365)], // won't handle leap years
+      showYears = years > 0,
+      showDays = days > 0 || showYears,
+      showHours = hours > 0 || showDays,
+      showMinutes = minutes > 0 || showHours,
+      showSeconds = seconds > 0 || showMinutes;
+
+  return _.compact([
+    showYears   ? (  years === 1 ? [`${years}`,     'year'] : [`${years}`,     'years']) : undefined,
+    showDays    ? (   days === 1 ? [`${days}`,       'day'] : [`${days}`,       'days']) : undefined,
+    showHours   ? (  hours === 1 ? [`${hours}`,     'hour'] : [`${hours}`,     'hours']) : undefined,
+    showMinutes ? (minutes === 1 ? [`${minutes}`, 'minute'] : [`${minutes}`, 'minutes']) : undefined,
+    showSeconds ? (seconds === 1 ? [`${seconds}`, 'second'] : [`${seconds}`, 'seconds']) : undefined
+  ]);
 }
 
 // Just an in-memory stub

@@ -1,2 +1,7 @@
 <div class="announce">Draft Starts In</div>
-<div class="countdown">{{countdown}}</div>
+<div class="countdown">
+  <div class="part" ng-repeat="part in countdown track by $index">
+    <div class="quantity">{{part[0]}}</div>
+    <div class="unit">{{part[1]}}</div>
+  </div>
+</div>
