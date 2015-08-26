@@ -1,22 +1,20 @@
 <div ng-class="{'scroll-capture': true, 'is-touch': isTouch}">
   <div class="wrapper">
-    <div class="inner-wrapper"
+    <div class="candidates"
          scroll-sync="syncMask($event)">
-      <div class="candidates">
-        <div ng-repeat="candidate in candidates track by $index"
-             ng-class="'candidate party-' + candidate.party.toLowerCase() + (tapped[candidate.id] ? ' is-tapped' : '')"
-             ng-mouseenter="hover(candidate)"
-             ng-mouseleave="unhover(candidate)"
-             ng-click="select(candidate); $event.preventDefault();">
-          <div class="image-wrapper">
-            <img delayed-src="'/assets/images/' + (candidate.image || '_who.jpg')">
-          </div>
-          <div ng-if="tapped[candidate.id]" class="tapped">
-            <span>TAPPED</span>
-          </div>
-          <div ng-if="show[candidate.id]" class="overlay">
-            <span>{{::candidate.name.display}}</span>
-          </div>
+      <div ng-repeat="candidate in candidates track by $index"
+           ng-class="'candidate party-' + candidate.party.toLowerCase() + (tapped[candidate.id] ? ' is-tapped' : '')"
+           ng-mouseenter="hover(candidate)"
+           ng-mouseleave="unhover(candidate)"
+           ng-click="select(candidate); $event.preventDefault();">
+        <div class="image-wrapper">
+          <img delayed-src="'/assets/images/' + (candidate.image || '_who.jpg')">
+        </div>
+        <div ng-if="tapped[candidate.id]" class="tapped">
+          <span>TAPPED</span>
+        </div>
+        <div ng-if="show[candidate.id]" class="overlay">
+          <span>{{::candidate.name.display}}</span>
         </div>
       </div>
     </div>

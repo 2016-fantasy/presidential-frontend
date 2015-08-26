@@ -125,182 +125,175 @@ pasture {
 
       flex: 1 1 auto;
 
-      .inner-wrapper {
+      .candidates {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
+
+        justify-content: center;
 
         flex: 1 1 auto;
 
         overflow-x: hidden;
         overflow-y: auto;
 
-        .candidates {
-          display: flex;
-          flex-wrap: wrap;
+        .candidate {
+          position: relative;
 
+          display: flex;
+
+          align-items: center;
           justify-content: center;
 
-          flex: 1 0 auto;
+          flex: 1 1 auto;
 
-          .candidate {
-            position: relative;
+          width: 10vw;
+          height: 10vw;
 
-            display: flex;
+          max-width: 15em;
+          min-width: 5em;
 
-            align-items: center;
-            justify-content: center;
+          max-height: 15em;
+          min-height: 5em;
 
-            flex: 1 1 auto;
+          color: #fff;
+          text-shadow: 0px 0px 1em #000;
 
-            width: 10vw;
-            height: 10vw;
+          cursor: pointer;
 
-            max-width: 15em;
-            min-width: 5em;
+          transition: all 0.5s ease-out;
 
-            max-height: 15em;
-            min-height: 5em;
+          opacity: 1;
+          transform: scale(1);
 
-            color: #fff;
-            text-shadow: 0px 0px 1em #000;
+          overflow: hidden;
 
-            cursor: pointer;
+          user-select: none;
 
-            transition: all 0.5s ease-out;
+          &.party-democrat {
+            color: #00f;
 
-            opacity: 1;
-            transform: scale(1);
+            &.is-tapped {
+              text-shadow: 0px 0px 1em #fff;
+
+              .image-wrapper {
+                box-shadow: 0px 0px 5em #33f;
+              }
+            }
+          }
+
+          &.party-republican {
+            color: #f00;
+
+            &.is-tapped {
+              text-shadow: 0px 0px 2em #fff;
+
+              .image-wrapper {
+                box-shadow: 0px 0px 2em #f33;
+              }
+            }
+          }
+
+          &.ng-enter, &.ng-leave.ng-leave-active { opacity: 0; transform: scale(0); }
+          &.ng-leave, &.ng-enter.ng-enter-active { opacity: 1; transform: scale(1); }
+
+          &.is-tapped {
+
+            .image-wrapper {
+              width: 75%;
+
+              img {
+                transform: scale(2.5);
+                opacity: 0.8;
+              }
+            }
+          }
+
+          .image-wrapper {
+            width: 100%;
 
             overflow: hidden;
 
-            user-select: none;
+            transition: all 0.5s ease-out;
 
-            &.party-democrat {
-              color: #00f;
+            img {
+              position: relative;
+              display: block;
 
-              &.is-tapped {
-                text-shadow: 0px 0px 1em #fff;
-
-                .image-wrapper {
-                  box-shadow: 0px 0px 5em #33f;
-                }
-              }
-            }
-
-            &.party-republican {
-              color: #f00;
-
-              &.is-tapped {
-                text-shadow: 0px 0px 2em #fff;
-
-                .image-wrapper {
-                  box-shadow: 0px 0px 2em #f33;
-                }
-              }
-            }
-
-            &.ng-enter, &.ng-leave.ng-leave-active { opacity: 0; transform: scale(0); }
-            &.ng-leave, &.ng-enter.ng-enter-active { opacity: 1; transform: scale(1); }
-
-            &.is-tapped {
-
-              .image-wrapper {
-                width: 75%;
-
-                img {
-                  transform: scale(2.5);
-                  opacity: 0.8;
-                }
-              }
-            }
-
-            .image-wrapper {
               width: 100%;
 
-              overflow: hidden;
-
               transition: all 0.5s ease-out;
-
-              img {
-                position: relative;
-                display: block;
-
-                width: 100%;
-
-                transition: all 0.5s ease-out;
-              }
             }
+          }
 
-            .tapped {
-              position: absolute;
-              top: 0;
-              left: 0;
+          .tapped {
+            position: absolute;
+            top: 0;
+            left: 0;
 
-              height: 100%;
-              width: 100%;
+            height: 100%;
+            width: 100%;
 
-              display: flex;
+            display: flex;
 
-              justify-content: center;
-              align-items: center;
+            justify-content: center;
+            align-items: center;
 
-              font-size: 1.1em;
-              font-weight: bolder;
+            font-size: 1.1em;
+            font-weight: bolder;
 
-              color: #fff;
-              text-shadow: 0px 0px 0.5em #000;
+            color: #fff;
+            text-shadow: 0px 0px 0.5em #000;
 
-              transition: all 0.5s ease-out;
+            transition: all 0.5s ease-out;
 
-              &.ng-enter, &.ng-leave.ng-leave-active {
-                span {
-                  opacity: 0;
-
-                  transform: rotate(0deg);
-                }
-              }
-              &.ng-leave, &.ng-enter.ng-enter-active {
-                span {
-                  opacity: 1;
-
-                  transform: rotate(-45deg);
-                }
-              }
-
+            &.ng-enter, &.ng-leave.ng-leave-active {
               span {
-                word-wrap: break-word;
-                text-align: center;
-                user-select: none;
+                opacity: 0;
+
+                transform: rotate(0deg);
+              }
+            }
+            &.ng-leave, &.ng-enter.ng-enter-active {
+              span {
+                opacity: 1;
 
                 transform: rotate(-45deg);
-
-                transition: all 0.5s ease-out;
-
-                user-select: none;
               }
             }
 
-            .overlay {
-              position: absolute;
-              top: 0;
-              left: 0;
+            span {
+              word-wrap: break-word;
+              text-align: center;
+              user-select: none;
 
-              height: 100%;
-              width: 100%;
+              transform: rotate(-45deg);
 
-              display: flex;
+              transition: all 0.5s ease-out;
 
-              justify-content: center;
-              align-items: center;
+              user-select: none;
+            }
+          }
 
-              font-size: 1.1em;
-              font-weight: bold;
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
 
-              span {
-                word-wrap: break-word;
-                text-align: center;
-                user-select: none;
-              }
+            height: 100%;
+            width: 100%;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            font-size: 1.1em;
+            font-weight: bold;
+
+            span {
+              word-wrap: break-word;
+              text-align: center;
+              user-select: none;
             }
           }
         }
