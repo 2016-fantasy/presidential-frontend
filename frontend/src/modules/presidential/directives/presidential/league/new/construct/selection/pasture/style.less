@@ -1,3 +1,12 @@
+@keyframes spin {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(3 * 360deg);
+  }
+}
+
 pasture {
   display: flex;
 
@@ -197,9 +206,10 @@ pasture {
           &.ng-leave, &.ng-enter.ng-enter-active { opacity: 1; transform: scale(1); }
 
           &.is-tapped {
-
             .image-wrapper {
               width: 75%;
+
+              animation: spin 2s ease-out;
 
               img {
                 transform: scale(2.5);
@@ -236,7 +246,7 @@ pasture {
             display: flex;
 
             justify-content: center;
-            align-items: center;
+            // align-items: center;
 
             font-size: 1.1em;
             font-weight: bolder;
@@ -250,14 +260,14 @@ pasture {
               span {
                 opacity: 0;
 
-                transform: rotate(0deg);
+                // transform: rotate(0deg);
               }
             }
             &.ng-leave, &.ng-enter.ng-enter-active {
               span {
                 opacity: 1;
 
-                transform: rotate(-45deg);
+                // transform: rotate(-45deg);
               }
             }
 
@@ -266,7 +276,7 @@ pasture {
               text-align: center;
               user-select: none;
 
-              transform: rotate(-45deg);
+              // transform: rotate(-45deg);
 
               transition: all 0.5s ease-out;
 
