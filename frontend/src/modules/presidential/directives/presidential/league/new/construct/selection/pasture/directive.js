@@ -75,7 +75,7 @@ export default () => {
             show = {},
             tapped = {};
 
-      $timeout(() => _.extend($scope, {candidates, show, tapped}), 0);
+      _.extend($scope, {candidates, show, tapped});
 
       $scope.hover = ({id}) => show[id] = true;
       $scope.unhover = ({id}) => delete show[id];
