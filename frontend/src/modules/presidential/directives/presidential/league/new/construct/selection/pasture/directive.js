@@ -88,11 +88,9 @@ export default () => {
 
         if (!isTapped) {
           show[id] = false;
-          $timeout(() => {
 
-            $scope.league.stable.unshift(candidate);
-            $scope.setState('stable');
-          }, 0);
+          $scope.league.stable.unshift(candidate);
+          $scope.setState('stable');
         }
         else {
           const {league: {stable}} = $scope,
