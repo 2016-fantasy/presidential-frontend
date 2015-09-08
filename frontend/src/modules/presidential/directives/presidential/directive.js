@@ -1,12 +1,17 @@
+import _ from 'lodash';
+
 export default () => {
   return {
     restrict: 'E',
     template: require('./template.html'),
-    controller: ['$scope', $scope => {
+    controller: ['$scope', 'dataStore', ($scope, dataStore) => {
+      $scope.dataStore = dataStore;
+
       // This was tool-generated elsewhere
-      $scope.stageGraph = {
+      $scope.stageGraph = injectData({
          "presidential-frontend": {
             "name": "presidential-frontend",
+            "start": "teaser",
             "states": {
                "teaser": {
                   "properties": [
@@ -37,11 +42,14 @@ export default () => {
          },
          "new-league": {
             "name": "new-league",
-            "start": "candidate-tier",
+            "data": [
+               "league"
+            ],
+            "start": "pasture",
             "states": {
-               "candidate-tier": {
+               "pasture": {
                   "properties": [
-                     "candidate-tier"
+                     "pasture"
                   ],
                   "transitions": [
                      "stable"
@@ -50,10 +58,10 @@ export default () => {
                "stable": {
                   "properties": [
                      "stable",
-                     "candidate-tier"
+                     "pasture"
                   ],
                   "transitions": [
-                     "candidate-tier",
+                     "pasture",
                      "set-draft"
                   ]
                },
@@ -115,6 +123,7 @@ export default () => {
          },
          "existing-league": {
             "name": "existing-league",
+            "start": "selector",
             "states": {
                "selector": {
                   "properties": [
@@ -127,7 +136,21 @@ export default () => {
                }
             }
          }
-      }['new-league'];
+      }['new-league'], dataStore);
     }]
   };
 };
+
+function injectData(graph, dataStore) {
+  return _.mapValues(graph, (value, name) => {
+    console.log({name, value});
+    if (name === 'data') {
+      return _.reduce(value, (result, name) => {
+        result[name] = dataStore.create(name);
+        return result;
+      }, {});
+    }
+
+    return value;
+  });
+}

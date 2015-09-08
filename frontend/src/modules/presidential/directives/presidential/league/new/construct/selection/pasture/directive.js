@@ -1,10 +1,11 @@
 import _ from 'lodash';
 
-export default () => {
+export default ['$timeout', $timeout => {
   return {
     restrict: 'E',
     template: require('./template.html'),
-    link: ($scope, element, attributes) => {
+    require: '^stage',
+    link: ($scope, element, attributes, stage) => {
       const scrollCapture = element[0],
             pasture = scrollCapture.children[0],
             wrapper = pasture.children[0],
@@ -69,8 +70,35 @@ export default () => {
         $scope.bottomMaskHeight = bottom ;
         $scope.bottomMaskTop = (1 - bottom);
       }
+
+      $scope.select = candidate => {
+        console.log({$scope});
+        const {show, tapped, league: {stable}} = $scope,
+              {id} = candidate,
+              isTapped = tapped[id];
+
+        tapped[id] = !isTapped;
+
+        if (!isTapped) {
+          show[id] = false;
+          // $timeout(() => {
+            const {league: {stable}} = $scope;
+
+            stable.unshift(candidate);
+            // $scope.setState('stable');
+            stage.transitionTo('stable');
+          // }, 0);
+        }
+        else {
+          const index = stable.indexOf(candidate);
+
+          if (index >= 0) stable.splice(index, 1);
+
+          if (stable.length === 0) stage.transitionTo('pasture');
+        }
+      };
     },
-    controller: ['$scope', '$timeout', 'dataStore', ($scope, $timeout, dataStore) => {
+    controller: ['$scope', 'dataStore', ($scope, dataStore) => {
       const candidates = _.sortBy(dataStore.getCandidates(), ({totalContributions}) => totalContributions || 0).reverse(),
             show = {},
             tapped = {};
@@ -80,34 +108,10 @@ export default () => {
       $scope.hover = ({id}) => show[id] = true;
       $scope.unhover = ({id}) => delete show[id];
 
-      $scope.select = candidate => {
-        const {id} = candidate,
-              isTapped = tapped[id];
-
-        tapped[id] = !isTapped;
-
-        if (!isTapped) {
-          show[id] = false;
-          $timeout(() => {
-
-            $scope.league.stable.unshift(candidate);
-            $scope.setState('stable');
-          }, 0);
-        }
-        else {
-          const {league: {stable}} = $scope,
-                index = stable.indexOf(candidate);
-
-          if (index >= 0) stable.splice(index, 1);
-
-          if (stable.length === 0) $scope.setState('candidate-tier');
-        }
-      };
-
       // Cheating, but it works for now
       $timeout(() => $scope.setMaskPosition(), 500);
     }]
   };
-};
+}];
 
 function clamp(min, value, max) { return Math.min(Math.max(value, min), max); }
