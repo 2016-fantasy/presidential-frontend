@@ -43,8 +43,24 @@ presidential {
     }
 
     &.state-set-draft {
-      set-draft {}
-      stable {}
+      set-draft { max-height: 100%; }
+      stable {
+        max-height: 10em;
+
+        .wrapper {
+          .candidate-wrapper {
+            .candidates {
+              .candidate {
+                width: 3em;
+
+                .detail {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
     &.state-invite {
