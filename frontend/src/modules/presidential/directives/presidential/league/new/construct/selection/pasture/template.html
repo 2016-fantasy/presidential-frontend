@@ -3,14 +3,14 @@
     <div class="candidates"
          scroll-sync="syncMask($event)">
       <div ng-repeat="candidate in candidates track by $index"
-           ng-class="'candidate party-' + candidate.party.toLowerCase() + (tapped[candidate.id] ? ' is-tapped' : '')"
+           ng-class="'candidate party-' + candidate.party.toLowerCase() + ' ' + (status[candidate.id] || '')"
            ng-mouseenter="hover(candidate)"
            ng-mouseleave="unhover(candidate)"
            ng-click="select(candidate); $event.preventDefault();">
         <div class="image-wrapper">
           <img delayed-src="'/assets/images/' + (candidate.image || '_who.jpg')">
         </div>
-        <div ng-if="tapped[candidate.id]" class="tapped">
+        <div ng-if="status[candidate.id] === 'is-tapped'" class="tapped">
           <span>TAPPED</span>
         </div>
         <div ng-if="show[candidate.id]" class="overlay">
@@ -48,4 +48,19 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="candidate-bio candidate-party-{{bio.party.toLowerCase()}}"
+     ng-if="bio">
+  <div class="name">{{bio.name.display}}</div>
+  <div class="split">
+    <div class="image">
+      <img class="pic" ng-src="/assets/images/{{bio.image || '_who.jpg'}}">
+    </div>
+    <div class="factoid">
+      Some interesting fact about {{bio.name.display}}.
+    </div>
+  </div>
+  <div class="add" ng-click="tapCandidate(bio)">Tap {{bio.name.display}}</div>
+  <div class="reject" ng-click="rejectCandidate(bio)">Hold Off on {{bio.name.display}}</div>
 </div>

@@ -71,39 +71,82 @@ export default ['$timeout', $timeout => {
         $scope.bottomMaskTop = (1 - bottom);
       }
 
+      let firstTap = {};
       $scope.select = candidate => {
         console.log({$scope});
-        const {show, tapped, league: {stable}} = $scope,
-              {id} = candidate,
-              isTapped = tapped[id];
+        const {show, status, league: {stable}} = $scope,
+              {id} = candidate;
 
-        tapped[id] = !isTapped;
+        if (status[id] === 'under-consideration') {
+          $timeout.cancel(firstTap[id]);
+          delete firstTap[id];
+          $scope.tapCandidate(candidate);
+        }
+        else {
+          firstTap[id] = delayDecision(candidate);
+          status[id] = 'under-consideration';
+        }
+      };
 
-        if (!isTapped) {
-          show[id] = false;
-          // $timeout(() => {
+      $scope.tapCandidate = candidate => {
+        updateState();
+        closeBio();
+
+        function updateState() {
+          const {id} = candidate,
+                {show, status, league: {stable}} = $scope,
+                isTapped = status[id] === 'is-tapped';
+
+
+          if (!isTapped) {
+            show[id] = false;
             const {league: {stable}} = $scope;
 
             stable.unshift(candidate);
             // $scope.setState('stable');
             stage.transitionTo('stable');
-          // }, 0);
-        }
-        else {
-          const index = stable.indexOf(candidate);
 
-          if (index >= 0) stable.splice(index, 1);
+            status[id] = 'is-tapped';
+          }
+          else {
+            delete status[id];
 
-          if (stable.length === 0) stage.transitionTo('pasture');
+            const index = stable.indexOf(candidate);
+
+            if (index >= 0) stable.splice(index, 1);
+
+            if (stable.length === 0) stage.transitionTo('pasture');
+          }
         }
       };
+
+      $scope.rejectCandidate = candidate => {
+        const {id} = candidate,
+              {status} = $scope;
+
+        delete status[id];
+
+        closeBio();
+      };
+
+      function delayDecision(candidate) {
+        const {id} = candidate;
+        return $timeout(() => {
+          $scope.bio = candidate;
+          delete firstTap[id];
+        }, 500);
+      }
+
+      function closeBio() {
+        delete $scope.bio;
+      }
     },
     controller: ['$scope', 'dataStore', ($scope, dataStore) => {
       const candidates = _.sortBy(dataStore.getCandidates(), ({totalContributions}) => totalContributions || 0).reverse(),
             show = {},
-            tapped = {};
+            status = {};
 
-      $timeout(() => _.extend($scope, {candidates, show, tapped}), 0);
+      $timeout(() => _.extend($scope, {candidates, show, status}), 0);
 
       $scope.hover = ({id}) => show[id] = true;
       $scope.unhover = ({id}) => delete show[id];
