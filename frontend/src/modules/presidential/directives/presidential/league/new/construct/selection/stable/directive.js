@@ -1,6 +1,35 @@
+
+// common behavior
+
+// behavior in state 'stable'
+// behavior in state 'set-draft'
+// etc.
+
+
+
 import _ from 'lodash';
 
+const others = Symbol();
+
 export default () => {
+  const stateRules = {
+    'stable': {
+      candidateSelect(candidate, league, stage) {
+        //Should probably show a menu with some options
+        const {stable} = league,
+              index = stable.indexOf(candidate);
+
+        if (index >= 0) stable.splice(index, 1);
+        if (stable.length  === 0) stage.transitionTo('pasture');
+      }
+    },
+    [others]: {
+      candidateSelect(candidate) {
+        alert('whoah');
+      }
+    }
+  };
+
   return {
     restrict: 'E',
     template: require('./template.html'),
@@ -9,12 +38,12 @@ export default () => {
     link($scope, element, attributes, stage) {
 
       $scope.select = candidate => {
-        //Should probably show a menu with some options
-        const {stable} = $scope.league,
-              index = stable.indexOf(candidate);
+        const currentState = stage.getCurrentState(),
+              rules = stateRules[currentState || others] || stateRules[others];
 
-        if (index >= 0) stable.splice(index, 1);
-        if (stable.length  === 0) stage.transitionTo('pasture');
+        const {league} = $scope;
+
+        rules.candidateSelect(candidate, league, stage);
       };
 
       $scope.toggleDraft = () => {

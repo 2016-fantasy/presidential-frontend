@@ -306,6 +306,7 @@ export default ['$compile', ($compile) => {
       this.transitionTo = (...args) => $scope.transitionTo(...args);
       this.getCurrentGraph = () => currentGraph;
       this.isCurrentState = guess => currentGraph ? currentGraph.getCurrentState().name === guess : undefined;
+      this.getCurrentState = () => currentGraph ? currentGraph.getCurrentState().name : undefined;
     }]
   };
 }];
