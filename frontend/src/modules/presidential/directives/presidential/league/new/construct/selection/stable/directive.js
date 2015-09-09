@@ -9,12 +9,12 @@
 
 import _ from 'lodash';
 
-const others = Symbol();
+const others = Symbol()
 
 export default () => {
   const createRules = ($scope, stage) => ({
     'stable': {
-      candidateSelect(candidate, league) {
+      select(candidate, league) {
         //Should probably show a menu with some options
         const {league:{stable}} = $scope,
               index = stable.indexOf(candidate);
@@ -24,11 +24,27 @@ export default () => {
       }
     },
     [others]: {
-      candidateSelect(candidate) {
+      select(candidate) {
         alert('whoah');
       }
     }
   });
+
+  const attachRules = ($scope, rules, stage) => {
+    const behaviors =  _.unique(_.flatten(_.map(rules, (behaviors, stateName) => _.map(behaviors, (fn, name) => name))));
+
+    _.each(behaviors, name => $scope[name] = makeFn(name));
+
+    function makeFn(name) {
+      return (...args) => getCurrentRules()[name](...args);
+    }
+
+    function getCurrentRules() {
+      const currentState = stage.getCurrentState();
+
+      return rules[currentState || others] || rules[others];
+    }
+  };
 
   return {
     restrict: 'E',
@@ -37,19 +53,12 @@ export default () => {
 
     link($scope, element, attributes, stage) {
       const rules = createRules($scope, stage);
-
-      $scope.select = candidate => {
-        const currentState = stage.getCurrentState(),
-              stateRules = rules[currentState || others] || rules[others];
-
-        stateRules.candidateSelect(candidate);
-      };
+      const s = attachRules($scope, rules, stage);
 
       $scope.toggleDraft = () => {
         if (stage.isCurrentState('set-draft')) stage.transitionTo('stable');
         else stage.transitionTo('set-draft');
       };
-
     },
 
     controller: ['$scope', ($scope) => {
