@@ -12,11 +12,11 @@ import _ from 'lodash';
 const others = Symbol();
 
 export default () => {
-  const stateRules = {
+  const createRules = ($scope, stage) => ({
     'stable': {
-      candidateSelect(candidate, league, stage) {
+      candidateSelect(candidate, league) {
         //Should probably show a menu with some options
-        const {stable} = league,
+        const {league:{stable}} = $scope,
               index = stable.indexOf(candidate);
 
         if (index >= 0) stable.splice(index, 1);
@@ -28,7 +28,7 @@ export default () => {
         alert('whoah');
       }
     }
-  };
+  });
 
   return {
     restrict: 'E',
@@ -36,14 +36,13 @@ export default () => {
     require: '^stage',
 
     link($scope, element, attributes, stage) {
+      const rules = createRules($scope, stage);
 
       $scope.select = candidate => {
         const currentState = stage.getCurrentState(),
-              rules = stateRules[currentState || others] || stateRules[others];
+              stateRules = rules[currentState || others] || rules[others];
 
-        const {league} = $scope;
-
-        rules.candidateSelect(candidate, league, stage);
+        stateRules.candidateSelect(candidate);
       };
 
       $scope.toggleDraft = () => {
