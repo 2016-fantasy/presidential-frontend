@@ -5,6 +5,75 @@ presidential {
 
   height: 100%;
 
+  stage {
+    position: fixed;
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    // justify-content: stretch;
+    align-items: stretch;
+
+    pasture {
+      flex: 1 1 auto;
+
+      max-height: 100%;
+
+      transition: all 0.25s ease-in-out;
+    }
+
+    stable {
+      flex: 0 1 auto;
+
+      max-height: 0%;
+
+      transition: all 0.25s ease-in-out;
+    }
+
+    &.state-pasture {
+      pasture { max-height: 100%; }
+    }
+
+    &.state-stable {
+      stable { max-height: 50%; }
+      pasture {  }
+    }
+
+    &.state-set-draft {
+      set-draft { max-height: 100%; }
+      stable {
+        max-height: 10em;
+
+        .wrapper {
+          .candidate-wrapper {
+            .candidates {
+              .candidate {
+                width: 3em;
+
+                .detail {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.state-invite {
+
+    }
+
+    &.state-pre-game {}
+
+    &.state-countdown {}
+
+    &.state-draft {}
+  }
+
   .view {
     display: flex;
     position: fixed;

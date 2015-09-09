@@ -1,37 +1,81 @@
+
+// common behavior
+
+// behavior in state 'stable'
+// behavior in state 'set-draft'
+// etc.
+
+
+
 import _ from 'lodash';
 
+const others = Symbol()
+
 export default () => {
-  return {
-    restrict: 'E',
-    template: require('./template.html'),
-    scope: {
-      'league': '=',
-    },
-    controller: ['$scope', 'dataStore', ($scope, dataStore) => {
-      const draft = dataStore.getDraft();
-
-      draft.when('countdownString', countdownString => $scope.draftText = format(countdownString) || 'Set Draft');
-
-      function format(countdownString) { return countdownString; }
-
-
-
-      $scope.scroll = $event => {
-        console.log({$event});
-      };
-
-      $scope.select = candidate => {
+  const createRules = ($scope, stage) => ({
+    'stable': {
+      select(candidate, league) {
         //Should probably show a menu with some options
-        const {stable} = $scope.league,
+        const {league:{stable}} = $scope,
               index = stable.indexOf(candidate);
 
         if (index >= 0) stable.splice(index, 1);
-        if (stable.length  === 0) $scope.$parent.setState('candidate-tier');
-      };
+        if (stable.length  === 0) stage.transitionTo('pasture');
+      }
+    },
+    [others]: {
+      select(candidate) {
+        alert('whoah');
+      }
+    }
+  });
+
+  const attachRules = ($scope, rules, stage) => {
+    const behaviors =  _.unique(_.flatten(_.map(rules, (behaviors, stateName) => _.map(behaviors, (fn, name) => name))));
+
+    _.each(behaviors, name => $scope[name] = makeFn(name));
+
+    function makeFn(name) {
+      return (...args) => getCurrentRules()[name](...args);
+    }
+
+    function getCurrentRules() {
+      const currentState = stage.getCurrentState();
+
+      return rules[currentState || others] || rules[others];
+    }
+  };
+
+  return {
+    restrict: 'E',
+    template: require('./template.html'),
+    require: '^stage',
+
+    link($scope, element, attributes, stage) {
+      const rules = createRules($scope, stage);
+      const s = attachRules($scope, rules, stage);
 
       $scope.toggleDraft = () => {
-        if ($scope.$parent.currentState === 'set-draft') $scope.$parent.setState('stable');
-        else $scope.$parent.setState('set-draft');
+        if (stage.isCurrentState('set-draft')) stage.transitionTo('stable');
+        else stage.transitionTo('set-draft');
+      };
+    },
+
+    controller: ['$scope', ($scope) => {
+      const {draft, league} = $scope;
+
+      if (draft) attachDraft(draft);
+      else setDraftText();
+
+      $scope.$watch('draft', attachDraft); // This should be wrapped with something that will deregister it on $destroy or when a new value is set
+
+      function attachDraft(draft) { if (draft) draft.when('countdown', setDraftText); }
+
+      function setDraftText(countdown) { $scope.draftText = format(countdown) || 'Set Draft'; }
+      function format(countdownString) { return countdownString; }
+
+      $scope.scroll = $event => {
+        console.log({$event});
       };
 
       $scope.getStableLogSize = () => {

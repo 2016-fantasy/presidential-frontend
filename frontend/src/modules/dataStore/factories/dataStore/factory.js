@@ -16,8 +16,16 @@ module.exports = ['$interval', '$timeout', ($interval, $timeout) => ({
   getLeagues,
   getLeagueById,
 
-  createLeague
+  createLeague,
+
+  create
 })];
+
+function create(what) {
+  switch (what) {
+    case 'league': return createLeague(); //break;
+  }
+}
 
 function getCandidates() { return candidates; } // This is a writable copy! Careful
 function getParties() { return parties; }

@@ -205,7 +205,8 @@ pasture {
           &.ng-enter, &.ng-leave.ng-leave-active { opacity: 0; transform: scale(0); }
           &.ng-leave, &.ng-enter.ng-enter-active { opacity: 1; transform: scale(1); }
 
-          &.is-tapped {
+          &.under-consideration, &.is-tapped {
+
             .image-wrapper {
               width: 75%;
 
@@ -232,6 +233,8 @@ pasture {
               width: 100%;
 
               transition: all 0.5s ease-out;
+
+              user-select: none;
             }
           }
 
@@ -307,6 +310,90 @@ pasture {
             }
           }
         }
+      }
+    }
+  }
+
+  .candidate-bio {
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: 2em;
+
+    // height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    // box-shadow: inset 0px 0px 100vh #f00;
+    // background-color: #f00;
+
+    transition: all 0.5s ease-in-out;
+
+    &.candidate-party-republican {
+      background-color: rgba(255, 0, 0, 0.7);
+    }
+
+    &.candidate-party-democrat {
+      background-color: rgba(0, 0, 255, 0.7);
+    }
+
+    &.ng-enter, &.ng-leave.ng-leave-active {
+      transform: scale(0);
+    }
+
+    &.ng-leave, &.ng-enter.ng-enter-active {
+      transform: scale(1);
+    }
+
+    .name {
+      color: #000;
+
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    .split {
+      display: flex;
+
+      .image {
+        flex: 1 1 auto;
+
+        display: flex;
+
+
+        justify-content: center;
+        align-items: center;
+
+        .pic {
+          // flex: 1 1 auto;
+
+          width: 100%;
+          max-height: 50vh;
+        }
+      }
+
+      .factoid {
+        flex: 1 1 auto;
+      }
+    }
+
+    .add, .reject {
+      flex: 1 1 auto;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(128, 128, 128, 0.5);
       }
     }
   }

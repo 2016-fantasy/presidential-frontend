@@ -61,7 +61,7 @@ const states = {
   'draft': ['stable', 'draft']
 };
 const a = `
-states {
+new-league {
   candidate-tier:
      : [candidate-tier]
     -> stable
@@ -91,7 +91,40 @@ states {
      : [game]
 }`;
 
-const b = parse(a);
+function p(string) { // start of a better parser
+  const graph = {};
+
+  function consumeGraph() {
+    while (consumeState());
+
+    function consumeState() {
+      return _.reduce([
+                consumeName,
+                consumeProperties,
+                consumeTransitions
+             ], combine, {});
+
+      function consumeName() {
+        consumeWhitespace();
+
+      }
+
+      function consumeProperties() {
+
+      }
+
+      function consumeTransitions() {
+
+      }
+
+      function combineState(state, consume) {
+        return _.extend(state, consume());
+      }
+    }
+  }
+}
+
+const b = validate(parse(a));
 
 console.log({b});
 
@@ -113,15 +146,15 @@ function parse(string) { // a terrible parser
       if (state) throw Error(`Duplicate state ${name}`);
 
       state = states[name] = {
-        values: [],
+        properties: [],
         transitions: []
       };
     }
     else if (line.indexOf(':') === 0) { // state property
       const list = line.split(':')[1],
-            values = /\[(.*)\]/g.exec(list)[1].split(',').map(value => value.trim());
+            properties = /\[(.*)\]/g.exec(list)[1].split(',').map(value => value.trim());
 
-      state.values.push(...values);
+      state.properties.push(...properties);
     }
     else if (line.indexOf('->') === 0) { // transition
       const transition = line.split('->')[1].trim();
@@ -132,6 +165,17 @@ function parse(string) { // a terrible parser
   }
 
   return states;
+}
+
+function validate(graph) {
+  for (let key in graph) {
+    const {transitions, properties} = graph[key];
+
+    transitions.forEach(transition => {
+      if (!graph[transition]) throw Error(`'${key}' has non-existent transition '${transition}'`);
+    });
+  }
+  return graph;
 }
 
 // states = {

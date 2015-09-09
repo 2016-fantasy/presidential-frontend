@@ -8,10 +8,11 @@ import _ from 'lodash';
 import dataStore from '../dataStore';
 import devbox from '../devbox';
 import state from '../state';
+import stateGraph from '../state-graph';
 import uiComponents from '../ui-components';
 
 export default {
-  'presidential':  angular.module('presidential', ['ngRoute', 'ngAnimate', 'ngTouch', 'dataStore', 'devbox', 'state', 'uiComponents'])
+  'presidential':  angular.module('presidential', ['ngRoute', 'ngAnimate', 'ngTouch', 'dataStore', 'devbox', 'state', 'stateGraph', 'uiComponents'])
     .directive('presidential',  require('./directives/presidential/directive'))
       .directive('candidates', require('./directives/presidential/candidates/directive'))
 
@@ -104,26 +105,6 @@ export default {
           template: '<league></league>',
           controller: dataController
         })
-        // .when('/breathe', {
-        //   template: `<breathe></breathe>`
-        // })
-        // .when('/exercise/:exerciseId?/:taskName?', {
-        //   template: '<player exercise="exercise"></player>',
-        //   controller: dataController
-        // })
-        // .when('/freestyle', {
-        //   template: '<freestyle></freestyle>'
-        // })
-        // .when('/workout/:workoutName?/:exerciseIndex?/:taskIndex?', {
-        //   template: params => {
-        //     const {workoutName, exerciseIndex, taskIndex} = params;
-        //     if (!workoutName) {
-        //       return '<workout-list></workout-list>';
-        //     }
-        //     else return '<workout workout-name="{{workoutName}}" exercise-index="{{exerciseIndex}}" task-index="{{taskIndex}}"></workout>';
-        //   },
-        //   controller: routerController
-        // })
         .otherwise({
           template: 'Where\'d you come from?'
         });
