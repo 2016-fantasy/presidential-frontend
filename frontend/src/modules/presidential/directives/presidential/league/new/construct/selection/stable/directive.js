@@ -9,7 +9,7 @@
 
 import _ from 'lodash';
 
-const others = Symbol()
+const others = Symbol();
 
 export default () => {
   const createRules = ($scope, stage) => ({
