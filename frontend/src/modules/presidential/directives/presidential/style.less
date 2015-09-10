@@ -23,6 +23,8 @@ presidential {
       max-height: 100%;
 
       transition: all 0.25s ease-in-out;
+
+      overflow: hidden;
     }
 
     stable {
@@ -33,13 +35,22 @@ presidential {
       transition: all 0.25s ease-in-out;
     }
 
+    set-draft {
+      flex: 1 1 auto;
+
+      overflow: hidden;
+    }
+
     &.state-pasture {
       pasture { max-height: 100%; }
+      set-draft { max-height: 0%; }
     }
 
     &.state-stable {
       stable { max-height: 50%; }
       pasture {  }
+
+      set-draft { max-height: 0%; }
     }
 
     &.state-set-draft {
@@ -60,6 +71,10 @@ presidential {
             }
           }
         }
+      }
+
+      pasture {
+        max-height: 0%;
       }
     }
 
