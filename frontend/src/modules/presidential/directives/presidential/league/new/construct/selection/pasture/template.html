@@ -8,7 +8,7 @@
            ng-mouseleave="unhover(candidate)"
            ng-click="select(candidate); $event.preventDefault();">
         <div class="image-wrapper">
-          <img delayed-src="'/assets/images/' + (candidate.image || '_who.jpg')">
+          <img delayed-src="'/assets/images/' + (candidate.image || 'who.jpg')">
         </div>
         <div ng-if="status[candidate.id] === 'is-tapped'" class="tapped">
           <span>TAPPED</span>
