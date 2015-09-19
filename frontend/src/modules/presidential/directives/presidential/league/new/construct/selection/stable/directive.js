@@ -11,6 +11,12 @@ import _ from 'lodash';
 
 const others = Symbol();
 
+
+const sortFn = {
+  'totalContributions': ({totalContributions}) => (totalContributions),
+  'party': ({party}) => (party)
+};
+
 export default () => {
   const createRules = ($scope, stage) => ({
     'stable': {
@@ -83,16 +89,10 @@ export default () => {
       };
 
       $scope.sortBy = by => {
-        console.log('sortby', by);
+        const {league} = $scope,
+              {stable} = league;
 
-        const {stable} = $scope.league;
-
-        if (by === 'totalContributions') {
-          $scope.league.stable = _.sortBy(stable, candidate => candidate.totalContributions || 0).reverse();
-        }
-        else if (by === 'party') {
-          $scope.league.stable = _.sortBy(stable, candidate => candidate.party);
-        }
+        league.stable = _.sortBy(stable, sortFn[by]);
 
         setOffset(0);
       };
